@@ -8,110 +8,111 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Metier;
+using Metier.Domaine;
 
 namespace HelpDeskWeb.Controllers
 {
-    public class ApplicationsController : Controller
+    public class MotifsController : Controller
     {
         private ModeleHelpDesk db = new ModeleHelpDesk();
 
-        // GET: Applications
+        // GET: Motifs
         public async Task<ActionResult> Index()
         {
-            return View(await db.Applications.ToListAsync());
+            return View(await db.Motifs.ToListAsync());
         }
 
-        // GET: Applications/Details/5
+        // GET: Motifs/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Application application = await db.Applications.FindAsync(id);
-            if (application == null)
+            Motif motif = await db.Motifs.FindAsync(id);
+            if (motif == null)
             {
                 return HttpNotFound();
             }
-            return View(application);
+            return View(motif);
         }
 
-        // GET: Applications/Create
+        // GET: Motifs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Applications/Create
+        // POST: Motifs/Create
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ApplicationID,Libelle")] Application application)
+        public async Task<ActionResult> Create([Bind(Include = "MotifID,Libelle")] Motif motif)
         {
             if (ModelState.IsValid)
             {
-                db.Applications.Add(application);
+                db.Motifs.Add(motif);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(application);
+            return View(motif);
         }
 
-        // GET: Applications/Edit/5
+        // GET: Motifs/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Application application = await db.Applications.FindAsync(id);
-            if (application == null)
+            Motif motif = await db.Motifs.FindAsync(id);
+            if (motif == null)
             {
                 return HttpNotFound();
             }
-            return View(application);
+            return View(motif);
         }
 
-        // POST: Applications/Edit/5
+        // POST: Motifs/Edit/5
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ApplicationID,Libelle")] Application application)
+        public async Task<ActionResult> Edit([Bind(Include = "MotifID,Libelle")] Motif motif)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(application).State = EntityState.Modified;
+                db.Entry(motif).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(application);
+            return View(motif);
         }
 
-        // GET: Applications/Delete/5
+        // GET: Motifs/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Application application = await db.Applications.FindAsync(id);
-            if (application == null)
+            Motif motif = await db.Motifs.FindAsync(id);
+            if (motif == null)
             {
                 return HttpNotFound();
             }
-            return View(application);
+            return View(motif);
         }
 
-        // POST: Applications/Delete/5
+        // POST: Motifs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Application application = await db.Applications.FindAsync(id);
-            db.Applications.Remove(application);
+            Motif motif = await db.Motifs.FindAsync(id);
+            db.Motifs.Remove(motif);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

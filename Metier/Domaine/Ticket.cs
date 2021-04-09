@@ -13,7 +13,7 @@ namespace Metier.Domaine
         #region Propriétés
         private int idTicket;
 
-        public int IDTicket
+        public int TicketID
         {
             get { return this.idTicket; }
             set { this.idTicket = value; }

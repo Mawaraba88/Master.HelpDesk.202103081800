@@ -8,110 +8,111 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Metier;
+using Metier.Domaine;
 
 namespace HelpDeskWeb.Controllers
 {
-    public class ApplicationsController : Controller
+    public class UtilisateursController : Controller
     {
         private ModeleHelpDesk db = new ModeleHelpDesk();
 
-        // GET: Applications
+        // GET: Utilisateurs
         public async Task<ActionResult> Index()
         {
-            return View(await db.Applications.ToListAsync());
+            return View(await db.Utilisateurs.ToListAsync());
         }
 
-        // GET: Applications/Details/5
+        // GET: Utilisateurs/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Application application = await db.Applications.FindAsync(id);
-            if (application == null)
+            Utilisateur utilisateur = await db.Utilisateurs.FindAsync(id);
+            if (utilisateur == null)
             {
                 return HttpNotFound();
             }
-            return View(application);
+            return View(utilisateur);
         }
 
-        // GET: Applications/Create
+        // GET: Utilisateurs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Applications/Create
+        // POST: Utilisateurs/Create
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ApplicationID,Libelle")] Application application)
+        public async Task<ActionResult> Create([Bind(Include = "UtilisateurID")] Utilisateur utilisateur)
         {
             if (ModelState.IsValid)
             {
-                db.Applications.Add(application);
+                db.Utilisateurs.Add(utilisateur);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(application);
+            return View(utilisateur);
         }
 
-        // GET: Applications/Edit/5
+        // GET: Utilisateurs/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Application application = await db.Applications.FindAsync(id);
-            if (application == null)
+            Utilisateur utilisateur = await db.Utilisateurs.FindAsync(id);
+            if (utilisateur == null)
             {
                 return HttpNotFound();
             }
-            return View(application);
+            return View(utilisateur);
         }
 
-        // POST: Applications/Edit/5
+        // POST: Utilisateurs/Edit/5
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ApplicationID,Libelle")] Application application)
+        public async Task<ActionResult> Edit([Bind(Include = "UtilisateurID")] Utilisateur utilisateur)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(application).State = EntityState.Modified;
+                db.Entry(utilisateur).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(application);
+            return View(utilisateur);
         }
 
-        // GET: Applications/Delete/5
+        // GET: Utilisateurs/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Application application = await db.Applications.FindAsync(id);
-            if (application == null)
+            Utilisateur utilisateur = await db.Utilisateurs.FindAsync(id);
+            if (utilisateur == null)
             {
                 return HttpNotFound();
             }
-            return View(application);
+            return View(utilisateur);
         }
 
-        // POST: Applications/Delete/5
+        // POST: Utilisateurs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Application application = await db.Applications.FindAsync(id);
-            db.Applications.Remove(application);
+            Utilisateur utilisateur = await db.Utilisateurs.FindAsync(id);
+            db.Utilisateurs.Remove(utilisateur);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

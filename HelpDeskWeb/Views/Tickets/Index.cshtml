@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Metier.Domaine.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Applications.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assistant.AssistantID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorie.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motif.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Niveau.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priorite.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Statut.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utilisateur.UtilisateurID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Temps)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PieceJointeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HistoriqueID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applications.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assistant.AssistantID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categorie.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Motif.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Niveau.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priorite.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Statut.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utilisateur.UtilisateurID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temps)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PieceJointeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HistoriqueID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TicketID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TicketID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TicketID })
+        </td>
+    </tr>
+}
+
+</table>
