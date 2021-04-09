@@ -28,6 +28,12 @@ namespace Metier.Domaine
         public string Contenu { get; set; }
     }
 
+    public class Criticite
+    {
+        public int CriticiteID { get; set; }
+        public string Libelle { get; set; }
+    }
+
 
 
     public class Type
@@ -51,9 +57,9 @@ namespace Metier.Domaine
         public string Libelle { get; set; }
     }
 
-    public class Motif
+    public class Environnement
     {
-        public int MotifID { get; set; }
+        public int EnvironnementID { get; set; }
         public string Libelle { get; set; }
     }
 
@@ -63,6 +69,11 @@ namespace Metier.Domaine
         public string Libelle { get; set; }
     }
 
+    public class Resolution
+    {
+        public int ResolutionID { get; set; }
+        public string Libelle { get; set; }
+    }
 
 
     public class PieceJointe
@@ -73,6 +84,7 @@ namespace Metier.Domaine
 
     public class Historique
     {
+
         public int HistoriqueID { get; set; }
         public string Libelle { get; set; }
     }
@@ -84,6 +96,7 @@ namespace Metier.Domaine
         public string Libelle { get; set; }
 
     }
+   
 
-  
+
 }

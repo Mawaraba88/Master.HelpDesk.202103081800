@@ -10,5 +10,7 @@ namespace Metier
         public int ApplicationID { get; set; }
 
         public string Libelle { get; set; }
+
+        public String Version { get; set; }
     }
 }

@@ -12,6 +12,14 @@ namespace Metier.Domaine
     {
         #region Propriétés
         private int idTicket;
+        public Type Type { get; set; }
+        public int TypeID { get; set; }
+        public string Resume { get; set; }
+        public DateTime DateEcheance { get; set; }
+        public DateTime DateCreation { get; set; }
+        public DateTime DateResolution { get; set; }
+        public string Description { get; set; }
+
 
         public int TicketID
         {
@@ -43,9 +51,7 @@ namespace Metier.Domaine
         public int HistoriqueID { get; set; }
 
 
-        public Type Type { get; set; }
-        public int TypeID { get; set; }
-
+       
         public ICollection<Commentaire> Commentaires { get; set; }
 
 
@@ -57,11 +63,18 @@ namespace Metier.Domaine
         public Priorite Priorite { get; set; }
         public int PrioriteID { get; set; }
 
+        public Resolution Resolution { get; set; }
+        public int ResolutionID { get; set; }
+
+
         public Statut Statut { get; set; }
         public int StatutID { get; set; }
 
-        public Motif Motif { get; set; }
-        public int MotifID { get; set; }
+        public Environnement Environnement { get; set; }
+        public int EnvironnementID { get; set; }
+
+        public Criticite Criticite { get; set; }
+        public int CriticiteID { get; set; }
 
         public List<PieceJointe> PieceJointes { get; set; }
         public List<Historique> Historiques { get; set; }
