@@ -1,0 +1,130 @@
+﻿<#@ template language="C#" hostspecific="True" #>
+<#@ output extension="cs" #>
+<#@ import namespace="System.Globalization" #><#
+string Auteurs = "codeEtudiant";
+string Application = "Master.Classes";
+string Dossier = "xxx";
+string Classe = "nomClasse";
+string NameSpace = string.Concat("Master.Classes.", Dossier);
+string Description = "Classe de gestion de xxx";
+string Version="0.01";
+string DateVersion= "99/99/2099";
+string DateGeneration = DateTime.Now.ToString(2099";
+string DateGeneration = DateTime.Now.ToString(
+Modèle de classe (Template)
+
+"d",
+CultureInfo.CreateSpecificCulture("fr-FR"));
+bool EstClassePartielle = false; //true;
+
+Generic",
+"System.Diagnostics",
+"System.Globalization",
+"System.IO",
+"System.Linq",
+"System.Text"
+};
+string[] regions = new string[]
+{
+// "Attributs, Constantes, Propriétés",
+"Attributs",
+"Constantes",
+"Propriétés",
+// "Chargement",
+// "Gestionnaires d'événements",
+"Méthodes publiques",
+"Méthodes protégées",
+"Méthodes privées"
+};
+#>
+#region Références
+<#
+for(int i=0; i < references.Length; i++)
+WriteLine( string.Format("using {0};", references[ i ] ) );
+#>
+#endregion
+namespace <#= NameSpace #>
+{
+/// <summary>
+/// <#= Description #>.
+/// </summary>
+public <#= Partielle #>class <#= Classe #>
+{ <#
+PushIndent("\t\t");
+
+string Partielle = string.Empty;
+if( EstClassePartielle )
+{
+Partielle = "partial ";
+}
+string[] references = new string[]
+{
+"System",
+"System.Collections.Generic",
+"System.Diagnostics",
+"System.Globalization",
+"System.IO",
+"System.Linq",
+"System.Text"
+};
+string[] regions = new string[]
+{
+// "Attributs, Constantes, Propriétés",
+"Attributs",
+"Constantes",
+"Propriétés",
+// "Chargement",
+// "Gestionnaires d'événements",
+"Méthodes publiques",
+"Méthodes protégées",
+"Méthodes privées"
+};
+#>
+#region Références
+<#
+for(int i=0; i < references.Length; i++)
+WriteLine( string.Format("using {0};", references[ i ] ) );
+#>
+#endregion
+namespace <#= NameSpace #>
+{
+/// <summary>
+/// <#= Description #>.
+/// </summary>
+public <#= Partielle #>class <#= Classe #>
+{ <#
+PushIndent("\t\t");
+
+
+for(int i = 0; i < regions.Length; i++)
+{
+WriteLine( "\n\t\t#region " + regions[i] + "\n\n\t\t#endregion" );
+}
+PopIndent();
+#>
+#region Initialisation, finalisation
+#region Constructeurs
+/// <summary>
+/// Initialise une nouvelle instance de
+/// la classe <see cref="<#= Classe #>"/>.
+/// </summary>
+public <#= Classe #>()
+{
+// TODO: Constructeur de la classe <#= Classe #>
+}
+/// <summary>
+/// Retourne une valeur <see cref="System.String"/>
+/// représentant cette instance.
+/// </summary>
+/// <returns>
+/// Valeur <see cref="System.String"/> représentant
+/// cette instance.
+/// </returns>
+public override string ToString()
+{
+return "<#= Classe #>";
+}
+#endregion
+#endregion
+}
+}

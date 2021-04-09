@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Master.Angular</title>
+</head>
+<body  ng-app="MasterAngular" ng-controller="controllerAngular">
+
+    <h1>Liste des utilisateurs</h1>
+    <h2>{{Titre}}</h2>
+    <p> Bienvenue {{Elise.nom}} {{Elise.prenom.toUpperCase() }}</p>
+    <table ng-show="estAffiche">
+        <tr><th>nom</th><th>prenom</th><th>annee</th></tr>
+
+        <tr  ng-repeat="u in Utilisateurs"><td>{{u.nom}}</td><td>{{u.prenom}}</td><td>{{u.annee}}</td></tr>
+    </table>
+
+    <input type="button" value="Masquer"  ng-click="masquer()"  />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
+
+    <script>
+        var application = angular.module("MasterAngular", []);
+        application.controller("controllerAngular", function ($scope) {
+            $scope.estAffiche = true;
+
+            $scope.masquer = function () {
+                $scope.estAffiche = false; 
+            };
+
+            console.log("Lancement de l'application");
+
+            $scope.Titre = "Etablissement : Master 2 CCI ";  
+
+            // JSON    objet = {}  / tableau/collection =  []
+            let personne = { nom: "CORNET", prenom: "Elise", annee: 2021 };
+            let personne1 = { nom: "NIANG", prenom: "Ndioba", annee: 2021 };
+            let personne2 = { nom: "DOUMBOUYA", prenom: "Mawaraba", annee: 2021 };
+            let personnes = [personne,personne1,personne2];
+            $scope.Elise = personne; 
+            $scope.Utilisateurs = personnes;
+
+        });
+    </script>
+</body>
+</html>
