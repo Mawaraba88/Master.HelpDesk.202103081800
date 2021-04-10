@@ -18,13 +18,21 @@ namespace Metier.Migrations
                 .PrimaryKey(t => t.ApplicationID);
             
             CreateTable(
-                "dbo.Assistants",
+                "dbo.Personnes",
                 c => new
                     {
-                        AssistantID = c.Int(nullable: false, identity: true),
-                        RoleID = c.Int(nullable: false),
+                        ID = c.Int(nullable: false, identity: true),
+                        Nom = c.String(),
+                        Prenom = c.String(),
+                        Email = c.String(),
+                        MotDePasse = c.String(),
+                        Profil = c.Int(nullable: false),
+                        AssistantID = c.Int(),
+                        RoleID = c.Int(),
+                        UtilisateurID = c.Int(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
-                .PrimaryKey(t => t.AssistantID)
+                .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Roles", t => t.RoleID, cascadeDelete: true)
                 .Index(t => t.RoleID);
             
@@ -102,6 +110,7 @@ namespace Metier.Migrations
                 c => new
                     {
                         PieceJointeID = c.Int(nullable: false, identity: true),
+                        Content = c.Binary(),
                         Libelle = c.String(),
                         Ticket_TicketID = c.Int(),
                     })
@@ -117,6 +126,15 @@ namespace Metier.Migrations
                         Libelle = c.String(),
                     })
                 .PrimaryKey(t => t.PrioriteID);
+            
+            CreateTable(
+                "dbo.Resolutions",
+                c => new
+                    {
+                        ResolutionID = c.Int(nullable: false, identity: true),
+                        Libelle = c.String(),
+                    })
+                .PrimaryKey(t => t.ResolutionID);
             
             CreateTable(
                 "dbo.Statuts",
@@ -154,7 +172,7 @@ namespace Metier.Migrations
                     })
                 .PrimaryKey(t => t.TicketID)
                 .ForeignKey("dbo.Applications", t => t.ApplicationID, cascadeDelete: true)
-                .ForeignKey("dbo.Assistants", t => t.AssistantID)
+                .ForeignKey("dbo.Personnes", t => t.AssistantID)
                 .ForeignKey("dbo.Categories", t => t.CategorieID, cascadeDelete: true)
                 .ForeignKey("dbo.Criticites", t => t.CriticiteID, cascadeDelete: true)
                 .ForeignKey("dbo.Environnements", t => t.EnvironnementID, cascadeDelete: true)
@@ -163,7 +181,7 @@ namespace Metier.Migrations
                 .ForeignKey("dbo.Resolutions", t => t.ResolutionID, cascadeDelete: true)
                 .ForeignKey("dbo.Statuts", t => t.StatutID, cascadeDelete: true)
                 .ForeignKey("dbo.Types", t => t.TypeID, cascadeDelete: true)
-                .ForeignKey("dbo.Utilisateurs", t => t.UtilisateurID, cascadeDelete: true)
+                .ForeignKey("dbo.Personnes", t => t.UtilisateurID, cascadeDelete: true)
                 .Index(t => t.TypeID)
                 .Index(t => t.UtilisateurID)
                 .Index(t => t.ApplicationID)
@@ -177,15 +195,6 @@ namespace Metier.Migrations
                 .Index(t => t.CriticiteID);
             
             CreateTable(
-                "dbo.Resolutions",
-                c => new
-                    {
-                        ResolutionID = c.Int(nullable: false, identity: true),
-                        Libelle = c.String(),
-                    })
-                .PrimaryKey(t => t.ResolutionID);
-            
-            CreateTable(
                 "dbo.Types",
                 c => new
                     {
@@ -194,19 +203,11 @@ namespace Metier.Migrations
                     })
                 .PrimaryKey(t => t.TypeID);
             
-            CreateTable(
-                "dbo.Utilisateurs",
-                c => new
-                    {
-                        UtilisateurID = c.Int(nullable: false, identity: true),
-                    })
-                .PrimaryKey(t => t.UtilisateurID);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Tickets", "UtilisateurID", "dbo.Utilisateurs");
+            DropForeignKey("dbo.Tickets", "UtilisateurID", "dbo.Personnes");
             DropForeignKey("dbo.Tickets", "TypeID", "dbo.Types");
             DropForeignKey("dbo.Tickets", "StatutID", "dbo.Statuts");
             DropForeignKey("dbo.Tickets", "ResolutionID", "dbo.Resolutions");
@@ -218,9 +219,9 @@ namespace Metier.Migrations
             DropForeignKey("dbo.Tickets", "CriticiteID", "dbo.Criticites");
             DropForeignKey("dbo.Commentaires", "Ticket_TicketID", "dbo.Tickets");
             DropForeignKey("dbo.Tickets", "CategorieID", "dbo.Categories");
-            DropForeignKey("dbo.Tickets", "AssistantID", "dbo.Assistants");
+            DropForeignKey("dbo.Tickets", "AssistantID", "dbo.Personnes");
             DropForeignKey("dbo.Tickets", "ApplicationID", "dbo.Applications");
-            DropForeignKey("dbo.Assistants", "RoleID", "dbo.Roles");
+            DropForeignKey("dbo.Personnes", "RoleID", "dbo.Roles");
             DropIndex("dbo.Tickets", new[] { "CriticiteID" });
             DropIndex("dbo.Tickets", new[] { "EnvironnementID" });
             DropIndex("dbo.Tickets", new[] { "StatutID" });
@@ -235,12 +236,11 @@ namespace Metier.Migrations
             DropIndex("dbo.PieceJointes", new[] { "Ticket_TicketID" });
             DropIndex("dbo.Historiques", new[] { "Ticket_TicketID" });
             DropIndex("dbo.Commentaires", new[] { "Ticket_TicketID" });
-            DropIndex("dbo.Assistants", new[] { "RoleID" });
-            DropTable("dbo.Utilisateurs");
+            DropIndex("dbo.Personnes", new[] { "RoleID" });
             DropTable("dbo.Types");
-            DropTable("dbo.Resolutions");
             DropTable("dbo.Tickets");
             DropTable("dbo.Statuts");
+            DropTable("dbo.Resolutions");
             DropTable("dbo.Priorites");
             DropTable("dbo.PieceJointes");
             DropTable("dbo.Niveaux");
@@ -250,7 +250,7 @@ namespace Metier.Migrations
             DropTable("dbo.Commentaires");
             DropTable("dbo.Categories");
             DropTable("dbo.Roles");
-            DropTable("dbo.Assistants");
+            DropTable("dbo.Personnes");
             DropTable("dbo.Applications");
         }
     }

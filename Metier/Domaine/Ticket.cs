@@ -83,6 +83,10 @@ namespace Metier.Domaine
         {
             this.Commentaires = new List<Commentaire>();
 
+            this.Historiques = new List<Historique>();
+
+            this.PieceJointes = new List<PieceJointe>();
+
             //  ctrl+v = coller circulaire        public List<PieceJointe> PieceJointes { get; set; }
             // selection rectangulaire =  alt + souris
             // FORMATAGE = ctrl + k +d 

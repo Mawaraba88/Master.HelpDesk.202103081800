@@ -1,0 +1,170 @@
+﻿@model Metier.Domaine.Ticket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Applications.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Applications.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Assistant.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assistant.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Criticite.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Criticite.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Environnement.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Environnement.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Niveau.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Niveau.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priorite.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priorite.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resolution.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resolution.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEcheance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEcheance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateResolution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateResolution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temps)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temps)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PieceJointeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PieceJointeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HistoriqueID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HistoriqueID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TicketID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

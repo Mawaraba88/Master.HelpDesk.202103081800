@@ -8,11 +8,12 @@ namespace Metier.Domaine
 {
     public abstract class Personne
     {
-        public string Nom;
-        public string Prenom;
-        public string Email;
-        public string MotDePasse;
-        public int Profil;
+        public int ID { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Email { get; set; }
+        public string MotDePasse { get; set; }
+        public int Profil { get; set; }
 
 
     }

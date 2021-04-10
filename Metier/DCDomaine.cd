@@ -3,7 +3,7 @@
   <Class Name="Metier.Domaine.Assistant">
     <Position X="7" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAIAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Domaine\Assistant.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -14,7 +14,7 @@
   <Class Name="Metier.Domaine.Personne">
     <Position X="11" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAECAAAAAAAAAAAAACACAAAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAECAAgAAAAAAAAAACACAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>Domaine\Personne.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -39,34 +39,24 @@
       <FileName>Domaine\Ticket.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Property Name="Type" />
       <Property Name="Utilisateur" />
       <Property Name="Applications" />
       <Property Name="Assistant" />
       <Property Name="Categorie" />
       <Property Name="Niveau" />
-      <Property Name="Environnement" />
-      <Property Name="Type" />
-      <Property Name="Criticite" />
-      <Property Name="Resolution" />
       <Property Name="Priorite" />
+      <Property Name="Resolution" />
+      <Property Name="Environnement" />
+      <Property Name="Criticite" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="PieceJointes" />
       <Property Name="Historiques" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Metier.Domaine.Role" Collapsed="true">
-    <Position X="9.25" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>Domaine\Modele.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Metier.Domaine.Criticite">
     <Position X="0.5" Y="2.75" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Properties" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>Domaine\Modele.cs</FileName>
@@ -117,7 +107,7 @@
   <Class Name="Metier.Domaine.PieceJointe" Collapsed="true">
     <Position X="0.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAEAAAAAACAAAAAAAA=</HashCode>
       <FileName>Domaine\Modele.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -132,6 +122,13 @@
     <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAA=</HashCode>
+      <FileName>Domaine\Modele.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Metier.Domaine.Role" Collapsed="true">
+    <Position X="9.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>Domaine\Modele.cs</FileName>
     </TypeIdentifier>
   </Class>

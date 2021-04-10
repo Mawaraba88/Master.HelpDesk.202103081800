@@ -58,9 +58,9 @@
     <Compile Include="Domaine\Ticket.cs" />
     <Compile Include="Domaine\Utilisateur.cs" />
     <Compile Include="Interfaces\IDomaine.cs" />
-    <Compile Include="Migrations\202104091655452_1.cs" />
-    <Compile Include="Migrations\202104091655452_1.Designer.cs">
-      <DependentUpon>202104091655452_1.cs</DependentUpon>
+    <Compile Include="Migrations\202104100720536_1.cs" />
+    <Compile Include="Migrations\202104100720536_1.Designer.cs">
+      <DependentUpon>202104100720536_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeleHelpDesk.cs" />
@@ -77,8 +77,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104091655452_1.resx">
-      <DependentUpon>202104091655452_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104100720536_1.resx">
+      <DependentUpon>202104100720536_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

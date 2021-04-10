@@ -30,19 +30,17 @@ namespace Metier
        
         public virtual DbSet<Categorie> Categories { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-  
+        public virtual DbSet<Resolution> Resolutions { get; set; }
+        public virtual DbSet<Criticite> Criticites { get; set; }
         public virtual DbSet<Priorite> Priorites { get; set; }
         public virtual DbSet<Statut> Statuts { get; set; }
         public virtual DbSet<Niveau> Niveaux { get; set; }
         public virtual DbSet<Type> Types { get; set; }
         public virtual DbSet<Environnement> Environnements { get; set; }
-        public virtual DbSet<Criticite> Criticites { get; set; }
-
-
-
-
+     
         public virtual DbSet<Historique> Historiques { get; set; }
         public virtual DbSet<PieceJointe> PieceJointes { get; set; }
+        public virtual DbSet<Personne> Personnes { get; set; }
 
 
     }

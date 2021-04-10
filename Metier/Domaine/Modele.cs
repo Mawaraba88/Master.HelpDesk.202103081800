@@ -67,6 +67,7 @@ namespace Metier.Domaine
     {
         public int PrioriteID { get; set; }
         public string Libelle { get; set; }
+
     }
 
     public class Resolution
@@ -79,6 +80,8 @@ namespace Metier.Domaine
     public class PieceJointe
     {
         public int PieceJointeID { get; set; }
+
+        public byte[] Content { get; set; }   
         public string Libelle { get; set; }
     }
 
@@ -96,7 +99,8 @@ namespace Metier.Domaine
         public string Libelle { get; set; }
 
     }
-   
+
+
 
 
 }

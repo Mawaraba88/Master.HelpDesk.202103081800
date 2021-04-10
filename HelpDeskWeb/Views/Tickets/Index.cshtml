@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Metier.Domaine.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Applications.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assistant.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorie.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Criticite.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Environnement.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Niveau.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priorite.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resolution.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Statut.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resume)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateEcheance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateResolution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Temps)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PieceJointeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HistoriqueID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applications.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assistant.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categorie.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Criticite.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Environnement.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Niveau.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priorite.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resolution.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Statut.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utilisateur.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resume)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateEcheance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateResolution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temps)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PieceJointeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HistoriqueID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TicketID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TicketID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TicketID })
+        </td>
+    </tr>
+}
+
+</table>
