@@ -42,7 +42,7 @@ namespace HelpDeskWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle");
-            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom");
+            ViewBag.AssistantID = new SelectList(db.Assistants, "ID", "Nom");
             ViewBag.CategorieID = new SelectList(db.Categories, "CategorieID", "Libelle");
             ViewBag.CriticiteID = new SelectList(db.Criticites, "CriticiteID", "Libelle");
             ViewBag.EnvironnementID = new SelectList(db.Environnements, "EnvironnementID", "Libelle");
@@ -51,7 +51,7 @@ namespace HelpDeskWeb.Controllers
             ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle");
             ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle");
             ViewBag.TypeID = new SelectList(db.Types, "TypeID", "Libelle");
-            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom");
+            ViewBag.UtilisateurID = new SelectList(db.Utilisateurs, "ID", "Nom");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,Temps,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,NiveauID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
+        public async Task<ActionResult> Create([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,NiveauID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace HelpDeskWeb.Controllers
             }
 
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
-            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
+            ViewBag.AssistantID = new SelectList(db.Assistants, "ID", "Nom", ticket.AssistantID);
             ViewBag.CategorieID = new SelectList(db.Categories, "CategorieID", "Libelle", ticket.CategorieID);
             ViewBag.CriticiteID = new SelectList(db.Criticites, "CriticiteID", "Libelle", ticket.CriticiteID);
             ViewBag.EnvironnementID = new SelectList(db.Environnements, "EnvironnementID", "Libelle", ticket.EnvironnementID);
@@ -79,7 +79,7 @@ namespace HelpDeskWeb.Controllers
             ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", ticket.ResolutionID);
             ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", ticket.StatutID);
             ViewBag.TypeID = new SelectList(db.Types, "TypeID", "Libelle", ticket.TypeID);
-            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", ticket.UtilisateurID);
+            ViewBag.UtilisateurID = new SelectList(db.Utilisateurs, "ID", "Nom", ticket.UtilisateurID);
             return View(ticket);
         }
 
@@ -96,7 +96,7 @@ namespace HelpDeskWeb.Controllers
                 return HttpNotFound();
             }
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
-            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
+            ViewBag.AssistantID = new SelectList(db.Assistants, "ID", "Nom", ticket.AssistantID);
             ViewBag.CategorieID = new SelectList(db.Categories, "CategorieID", "Libelle", ticket.CategorieID);
             ViewBag.CriticiteID = new SelectList(db.Criticites, "CriticiteID", "Libelle", ticket.CriticiteID);
             ViewBag.EnvironnementID = new SelectList(db.Environnements, "EnvironnementID", "Libelle", ticket.EnvironnementID);
@@ -105,7 +105,7 @@ namespace HelpDeskWeb.Controllers
             ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", ticket.ResolutionID);
             ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", ticket.StatutID);
             ViewBag.TypeID = new SelectList(db.Types, "TypeID", "Libelle", ticket.TypeID);
-            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", ticket.UtilisateurID);
+            ViewBag.UtilisateurID = new SelectList(db.Utilisateurs, "ID", "Nom", ticket.UtilisateurID);
             return View(ticket);
         }
 
@@ -114,7 +114,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,Temps,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,NiveauID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
+        public async Task<ActionResult> Edit([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,NiveauID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
-            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
+            ViewBag.AssistantID = new SelectList(db.Assistants, "ID", "Nom", ticket.AssistantID);
             ViewBag.CategorieID = new SelectList(db.Categories, "CategorieID", "Libelle", ticket.CategorieID);
             ViewBag.CriticiteID = new SelectList(db.Criticites, "CriticiteID", "Libelle", ticket.CriticiteID);
             ViewBag.EnvironnementID = new SelectList(db.Environnements, "EnvironnementID", "Libelle", ticket.EnvironnementID);
@@ -132,7 +132,7 @@ namespace HelpDeskWeb.Controllers
             ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", ticket.ResolutionID);
             ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", ticket.StatutID);
             ViewBag.TypeID = new SelectList(db.Types, "TypeID", "Libelle", ticket.TypeID);
-            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", ticket.UtilisateurID);
+            ViewBag.UtilisateurID = new SelectList(db.Utilisateurs, "ID", "Nom", ticket.UtilisateurID);
             return View(ticket);
         }
 

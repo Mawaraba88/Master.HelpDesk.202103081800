@@ -3,25 +3,21 @@
   <Class Name="Metier.Domaine.Assistant">
     <Position X="7" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Domaine\Assistant.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Role" />
-    </ShowAsAssociation>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Metier.Domaine.Personne">
     <Position X="11" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAECAAgAAAAAAAAAACACAAAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAECAAgAAAAAAAAAAAACAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>Domaine\Personne.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Metier.Domaine.Utilisateur">
     <Position X="5.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAABAAAEA=</HashCode>
       <FileName>Domaine\Utilisateur.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -30,8 +26,8 @@
     <AssociationLine Name="Utilisateur" Type="Metier.Domaine.Utilisateur" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="4.875" Y="6.738" />
-        <Point X="4.875" Y="8.078" />
-        <Point X="5.75" Y="8.078" />
+        <Point X="4.875" Y="8.483" />
+        <Point X="5.75" Y="8.483" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -122,13 +118,6 @@
     <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAA=</HashCode>
-      <FileName>Domaine\Modele.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Metier.Domaine.Role" Collapsed="true">
-    <Position X="9.25" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>Domaine\Modele.cs</FileName>
     </TypeIdentifier>
   </Class>

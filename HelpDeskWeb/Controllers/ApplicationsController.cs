@@ -17,10 +17,8 @@ namespace HelpDeskWeb.Controllers
 
         // GET: Applications
         public async Task<ActionResult> Index()
-            
         {
-            var resultats = await db.Applications.ToListAsync();
-            return View(resultats);
+            return View(await db.Applications.ToListAsync());
         }
 
         // GET: Applications/Details/5

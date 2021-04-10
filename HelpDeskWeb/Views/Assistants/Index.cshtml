@@ -23,15 +23,6 @@
         <th>
             @Html.DisplayNameFor(model => model.MotDePasse)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Profil)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AssistantID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Role.Libelle)
-        </th>
         <th></th>
     </tr>
 
@@ -48,15 +39,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MotDePasse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Profil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssistantID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role.Libelle)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

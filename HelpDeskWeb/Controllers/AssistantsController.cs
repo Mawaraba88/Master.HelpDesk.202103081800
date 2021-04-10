@@ -19,8 +19,7 @@ namespace HelpDeskWeb.Controllers
         // GET: Assistants
         public async Task<ActionResult> Index()
         {
-            var personnes = db.Personnes.Include(a => a.Role);
-            return View(await personnes.ToListAsync());
+            return View(await db.Assistants.ToListAsync());
         }
 
         // GET: Assistants/Details/5
@@ -30,7 +29,7 @@ namespace HelpDeskWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Assistant assistant = await db.Personnes.FindAsync(id);
+            Assistant assistant = await db.Assistants.FindAsync(id);
             if (assistant == null)
             {
                 return HttpNotFound();
@@ -41,7 +40,6 @@ namespace HelpDeskWeb.Controllers
         // GET: Assistants/Create
         public ActionResult Create()
         {
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "Libelle");
             return View();
         }
 
@@ -50,7 +48,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,Profil,AssistantID,RoleID")] Assistant assistant)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Assistant assistant)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +57,6 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "Libelle", assistant.RoleID);
             return View(assistant);
         }
 
@@ -70,12 +67,11 @@ namespace HelpDeskWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Assistant assistant = await db.Personnes.FindAsync(id);
+            Assistant assistant = await db.Assistants.FindAsync(id);
             if (assistant == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "Libelle", assistant.RoleID);
             return View(assistant);
         }
 
@@ -84,7 +80,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,Profil,AssistantID,RoleID")] Assistant assistant)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Assistant assistant)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +88,6 @@ namespace HelpDeskWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "Libelle", assistant.RoleID);
             return View(assistant);
         }
 
@@ -103,7 +98,7 @@ namespace HelpDeskWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Assistant assistant = await db.Personnes.FindAsync(id);
+            Assistant assistant = await db.Assistants.FindAsync(id);
             if (assistant == null)
             {
                 return HttpNotFound();
@@ -116,7 +111,7 @@ namespace HelpDeskWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Assistant assistant = await db.Personnes.FindAsync(id);
+            Assistant assistant = await db.Assistants.FindAsync(id);
             db.Personnes.Remove(assistant);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

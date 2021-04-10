@@ -29,23 +29,23 @@ namespace Metier.Domaine
         // prop (snippet)
        
 
-        public decimal Temps { get; set; }
+        /*public decimal Temps { get; set; }
         public decimal TempsJour
         {
             get { return this.Temps / 6; }
-        }
+        }*/
         #endregion
-
-        public Utilisateur Utilisateur { get; set; }
         public int UtilisateurID { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }
+       
 
         public Application Applications { get; set; }
         public int ApplicationID { get; set; }
 
-
-        public Assistant Assistant { get; set; }
-        // public int? AssistantID { get; set; }
         public Nullable<int> AssistantID { get; set; }
+        public virtual Assistant Assistant { get; set; }
+        // public int? AssistantID { get; set; }
+       
       
         public int PieceJointeID { get; set; }
         public int HistoriqueID { get; set; }

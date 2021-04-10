@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Metier.Domaine
 {
-    /// <summary>
+    /*/// <summary>
     /// Classe de gestion des rôles
     /// </summary>
     public class Role
@@ -20,7 +20,7 @@ namespace Metier.Domaine
 
         public int Encours() { return -1; }
     }
-
+    */
 
     public class Commentaire
     {

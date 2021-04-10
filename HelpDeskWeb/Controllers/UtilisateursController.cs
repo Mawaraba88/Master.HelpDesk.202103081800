@@ -19,7 +19,7 @@ namespace HelpDeskWeb.Controllers
         // GET: Utilisateurs
         public async Task<ActionResult> Index()
         {
-            return View(await db.Personnes.ToListAsync());
+            return View(await db.Utilisateurs.ToListAsync());
         }
 
         // GET: Utilisateurs/Details/5
@@ -29,7 +29,7 @@ namespace HelpDeskWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Utilisateur utilisateur = (Utilisateur)await db.Personnes.FindAsync(id);
+            Utilisateur utilisateur = await db.Utilisateurs.FindAsync(id);
             if (utilisateur == null)
             {
                 return HttpNotFound();
@@ -48,7 +48,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,Profil,UtilisateurID")] Utilisateur utilisateur)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Utilisateur utilisateur)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace HelpDeskWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Utilisateur utilisateur = (Utilisateur)await db.Personnes.FindAsync(id);
+            Utilisateur utilisateur = await db.Utilisateurs.FindAsync(id);
             if (utilisateur == null)
             {
                 return HttpNotFound();
@@ -80,7 +80,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,Profil,UtilisateurID")] Utilisateur utilisateur)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Utilisateur utilisateur)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace HelpDeskWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Utilisateur utilisateur = (Utilisateur)await db.Personnes.FindAsync(id);
+            Utilisateur utilisateur = await db.Utilisateurs.FindAsync(id);
             if (utilisateur == null)
             {
                 return HttpNotFound();
@@ -111,7 +111,7 @@ namespace HelpDeskWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Utilisateur utilisateur = (Utilisateur)await db.Personnes.FindAsync(id);
+            Utilisateur utilisateur = await db.Utilisateurs.FindAsync(id);
             db.Personnes.Remove(utilisateur);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
