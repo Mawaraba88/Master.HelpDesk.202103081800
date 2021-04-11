@@ -19,7 +19,7 @@ namespace HelpDeskWeb.Controllers
         // GET: Tickets
         public async Task<ActionResult> Index()
         {
-            var tickets = db.Tickets.Include(t => t.Applications).Include(t => t.Assistant).Include(t => t.Categorie).Include(t => t.Criticite).Include(t => t.Environnement).Include(t => t.Niveau).Include(t => t.Priorite).Include(t => t.Resolution).Include(t => t.Statut).Include(t => t.Type).Include(t => t.Utilisateur);
+            var tickets = db.Tickets.Include(t => t.Applications).Include(t => t.Assistant).Include(t => t.Categorie).Include(t => t.Criticite).Include(t => t.Environnement).Include(t => t.Priorite).Include(t => t.Resolution).Include(t => t.Statut).Include(t => t.Type).Include(t => t.Utilisateur);
             return View(await tickets.ToListAsync());
         }
 
@@ -42,16 +42,15 @@ namespace HelpDeskWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle");
-            ViewBag.AssistantID = new SelectList(db.Assistants, "ID", "Nom");
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom");
             ViewBag.CategorieID = new SelectList(db.Categories, "CategorieID", "Libelle");
             ViewBag.CriticiteID = new SelectList(db.Criticites, "CriticiteID", "Libelle");
             ViewBag.EnvironnementID = new SelectList(db.Environnements, "EnvironnementID", "Libelle");
-            ViewBag.NiveauID = new SelectList(db.Niveaux, "NiveauID", "Libelle");
             ViewBag.PrioriteID = new SelectList(db.Priorites, "PrioriteID", "Libelle");
             ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle");
             ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle");
             ViewBag.TypeID = new SelectList(db.Types, "TypeID", "Libelle");
-            ViewBag.UtilisateurID = new SelectList(db.Utilisateurs, "ID", "Nom");
+            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom");
             return View();
         }
 
@@ -60,7 +59,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,NiveauID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
+        public async Task<ActionResult> Create([Bind(Include = "TicketID,TypeID,Resume,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -70,16 +69,15 @@ namespace HelpDeskWeb.Controllers
             }
 
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
-            ViewBag.AssistantID = new SelectList(db.Assistants, "ID", "Nom", ticket.AssistantID);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
             ViewBag.CategorieID = new SelectList(db.Categories, "CategorieID", "Libelle", ticket.CategorieID);
             ViewBag.CriticiteID = new SelectList(db.Criticites, "CriticiteID", "Libelle", ticket.CriticiteID);
             ViewBag.EnvironnementID = new SelectList(db.Environnements, "EnvironnementID", "Libelle", ticket.EnvironnementID);
-            ViewBag.NiveauID = new SelectList(db.Niveaux, "NiveauID", "Libelle", ticket.NiveauID);
             ViewBag.PrioriteID = new SelectList(db.Priorites, "PrioriteID", "Libelle", ticket.PrioriteID);
             ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", ticket.ResolutionID);
             ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", ticket.StatutID);
             ViewBag.TypeID = new SelectList(db.Types, "TypeID", "Libelle", ticket.TypeID);
-            ViewBag.UtilisateurID = new SelectList(db.Utilisateurs, "ID", "Nom", ticket.UtilisateurID);
+            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", ticket.UtilisateurID);
             return View(ticket);
         }
 
@@ -96,16 +94,15 @@ namespace HelpDeskWeb.Controllers
                 return HttpNotFound();
             }
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
-            ViewBag.AssistantID = new SelectList(db.Assistants, "ID", "Nom", ticket.AssistantID);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
             ViewBag.CategorieID = new SelectList(db.Categories, "CategorieID", "Libelle", ticket.CategorieID);
             ViewBag.CriticiteID = new SelectList(db.Criticites, "CriticiteID", "Libelle", ticket.CriticiteID);
             ViewBag.EnvironnementID = new SelectList(db.Environnements, "EnvironnementID", "Libelle", ticket.EnvironnementID);
-            ViewBag.NiveauID = new SelectList(db.Niveaux, "NiveauID", "Libelle", ticket.NiveauID);
             ViewBag.PrioriteID = new SelectList(db.Priorites, "PrioriteID", "Libelle", ticket.PrioriteID);
             ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", ticket.ResolutionID);
             ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", ticket.StatutID);
             ViewBag.TypeID = new SelectList(db.Types, "TypeID", "Libelle", ticket.TypeID);
-            ViewBag.UtilisateurID = new SelectList(db.Utilisateurs, "ID", "Nom", ticket.UtilisateurID);
+            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", ticket.UtilisateurID);
             return View(ticket);
         }
 
@@ -114,7 +111,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,NiveauID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
+        public async Task<ActionResult> Edit([Bind(Include = "TicketID,TypeID,Resume,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -123,16 +120,15 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
-            ViewBag.AssistantID = new SelectList(db.Assistants, "ID", "Nom", ticket.AssistantID);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
             ViewBag.CategorieID = new SelectList(db.Categories, "CategorieID", "Libelle", ticket.CategorieID);
             ViewBag.CriticiteID = new SelectList(db.Criticites, "CriticiteID", "Libelle", ticket.CriticiteID);
             ViewBag.EnvironnementID = new SelectList(db.Environnements, "EnvironnementID", "Libelle", ticket.EnvironnementID);
-            ViewBag.NiveauID = new SelectList(db.Niveaux, "NiveauID", "Libelle", ticket.NiveauID);
             ViewBag.PrioriteID = new SelectList(db.Priorites, "PrioriteID", "Libelle", ticket.PrioriteID);
             ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", ticket.ResolutionID);
             ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", ticket.StatutID);
             ViewBag.TypeID = new SelectList(db.Types, "TypeID", "Libelle", ticket.TypeID);
-            ViewBag.UtilisateurID = new SelectList(db.Utilisateurs, "ID", "Nom", ticket.UtilisateurID);
+            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", ticket.UtilisateurID);
             return View(ticket);
         }
 

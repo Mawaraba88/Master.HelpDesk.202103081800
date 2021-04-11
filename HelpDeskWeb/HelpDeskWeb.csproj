@@ -136,7 +136,6 @@
     <Compile Include="Controllers\EnvironnementsController.cs" />
     <Compile Include="Controllers\HistoriquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NiveauxController.cs" />
     <Compile Include="Controllers\PieceJointesController.cs" />
     <Compile Include="Controllers\StatutsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />

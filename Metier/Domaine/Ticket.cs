@@ -1,4 +1,6 @@
 ﻿#region Références importées
+
+using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +17,9 @@ namespace Metier.Domaine
         public Type Type { get; set; }
         public int TypeID { get; set; }
         public string Resume { get; set; }
-        public DateTime DateEcheance { get; set; }
-        public DateTime DateCreation { get; set; }
-        public DateTime DateResolution { get; set; }
+        public Date DateEcheance { get; set; }
+        public Date DateCreation { get; set; }
+        public Date DateResolution { get; set; }
         public string Description { get; set; }
 
 
@@ -58,8 +60,8 @@ namespace Metier.Domaine
         public Categorie Categorie { get; set; }
         public int CategorieID { get; set; }
 
-        public Niveau Niveau { get; set; }
-        public int NiveauID { get; set; }
+       /* public Niveau Niveau { get; set; }
+        public int NiveauID { get; set; }*/
         public Priorite Priorite { get; set; }
         public int PrioriteID { get; set; }
 

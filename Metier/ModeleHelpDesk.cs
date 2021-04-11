@@ -35,7 +35,7 @@ namespace Metier
         public virtual DbSet<Criticite> Criticites { get; set; }
         public virtual DbSet<Priorite> Priorites { get; set; }
         public virtual DbSet<Statut> Statuts { get; set; }
-        public virtual DbSet<Niveau> Niveaux { get; set; }
+       // public virtual DbSet<Niveau> Niveaux { get; set; }
         public virtual DbSet<Type> Types { get; set; }
         public virtual DbSet<Environnement> Environnements { get; set; }
      
