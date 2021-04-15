@@ -17,9 +17,9 @@ namespace Metier.Domaine
         public Type Type { get; set; }
         public int TypeID { get; set; }
         public string Resume { get; set; }
-        public Date DateEcheance { get; set; }
-        public Date DateCreation { get; set; }
-        public Date DateResolution { get; set; }
+        public DateTime DateEcheance { get; set; }
+        public DateTime DateCreation { get; set; }
+        public DateTime DateResolution { get; set; }
         public string Description { get; set; }
 
 

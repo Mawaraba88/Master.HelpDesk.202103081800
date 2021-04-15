@@ -19,7 +19,8 @@ namespace HelpDeskWeb.Controllers
         // GET: Historiques
         public async Task<ActionResult> Index()
         {
-            return View(await db.Historiques.ToListAsync());
+            var historiques = db.Historiques.Include(h => h.Assistant).Include(h => h.Priorite).Include(h => h.Resolution).Include(h => h.Statut).Include(h => h.Utilisateur);
+            return View(await historiques.ToListAsync());
         }
 
         // GET: Historiques/Details/5
@@ -40,6 +41,11 @@ namespace HelpDeskWeb.Controllers
         // GET: Historiques/Create
         public ActionResult Create()
         {
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom");
+            ViewBag.PrioriteID = new SelectList(db.Priorites, "PrioriteID", "Libelle");
+            ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle");
+            ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle");
+            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom");
             return View();
         }
 
@@ -48,7 +54,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "HistoriqueID,Libelle")] Historique historique)
+        public async Task<ActionResult> Create([Bind(Include = "HistoriqueID,DateCreation,Libelle,AssistantID,PieceJointeID,PrioriteID,ResolutionID,StatutID,UtilisateurID")] Historique historique)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +63,11 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", historique.AssistantID);
+            ViewBag.PrioriteID = new SelectList(db.Priorites, "PrioriteID", "Libelle", historique.PrioriteID);
+            ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", historique.ResolutionID);
+            ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", historique.StatutID);
+            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", historique.UtilisateurID);
             return View(historique);
         }
 
@@ -72,6 +83,11 @@ namespace HelpDeskWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", historique.AssistantID);
+            ViewBag.PrioriteID = new SelectList(db.Priorites, "PrioriteID", "Libelle", historique.PrioriteID);
+            ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", historique.ResolutionID);
+            ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", historique.StatutID);
+            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", historique.UtilisateurID);
             return View(historique);
         }
 
@@ -80,7 +96,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "HistoriqueID,Libelle")] Historique historique)
+        public async Task<ActionResult> Edit([Bind(Include = "HistoriqueID,DateCreation,Libelle,AssistantID,PieceJointeID,PrioriteID,ResolutionID,StatutID,UtilisateurID")] Historique historique)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +104,11 @@ namespace HelpDeskWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", historique.AssistantID);
+            ViewBag.PrioriteID = new SelectList(db.Priorites, "PrioriteID", "Libelle", historique.PrioriteID);
+            ViewBag.ResolutionID = new SelectList(db.Resolutions, "ResolutionID", "Libelle", historique.ResolutionID);
+            ViewBag.StatutID = new SelectList(db.Statuts, "StatutID", "Libelle", historique.StatutID);
+            ViewBag.UtilisateurID = new SelectList(db.Personnes, "ID", "Nom", historique.UtilisateurID);
             return View(historique);
         }
 

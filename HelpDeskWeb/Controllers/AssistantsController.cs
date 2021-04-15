@@ -19,7 +19,8 @@ namespace HelpDeskWeb.Controllers
         // GET: Assistants
         public async Task<ActionResult> Index()
         {
-            return View(await db.Assistants.ToListAsync());
+            var personnes = db.Assistants.Include(a => a.Role);
+            return View(await personnes.ToListAsync());
         }
 
         // GET: Assistants/Details/5
@@ -40,6 +41,7 @@ namespace HelpDeskWeb.Controllers
         // GET: Assistants/Create
         public ActionResult Create()
         {
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "Libelle");
             return View();
         }
 
@@ -48,7 +50,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Assistant assistant)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,RoleID")] Assistant assistant)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +59,7 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "Libelle", assistant.RoleID);
             return View(assistant);
         }
 
@@ -72,6 +75,7 @@ namespace HelpDeskWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "Libelle", assistant.RoleID);
             return View(assistant);
         }
 
@@ -80,7 +84,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Assistant assistant)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,RoleID")] Assistant assistant)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +92,7 @@ namespace HelpDeskWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "Libelle", assistant.RoleID);
             return View(assistant);
         }
 

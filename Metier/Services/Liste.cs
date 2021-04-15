@@ -47,12 +47,12 @@ namespace Metier.Services
         {
             #region Profils
             Profil profilCollaborateur = new Profil();
-            profilCollaborateur.IDProfil = 3;
+            profilCollaborateur.ProfilID = 3;
             profilCollaborateur.Libelle = "Collaborateur";
 
 
-            profils.Ajouter(new Profil { IDProfil = 1, Libelle = "Administrateur" });
-            profils.Ajouter(new Profil { IDProfil = 2, Libelle = "Client" });
+            profils.Ajouter(new Profil { ProfilID = 1, Libelle = "Administrateur" });
+            profils.Ajouter(new Profil { ProfilID = 2, Libelle = "Client" });
             profils.Ajouter(profilCollaborateur);
             #endregion
 

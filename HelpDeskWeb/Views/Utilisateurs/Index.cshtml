@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.MotDePasse)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Profil.Libelle)
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MotDePasse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profil.Libelle)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

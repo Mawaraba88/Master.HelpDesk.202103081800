@@ -37,30 +37,23 @@ namespace Metier
         public virtual DbSet<Statut> Statuts { get; set; }
        // public virtual DbSet<Niveau> Niveaux { get; set; }
         public virtual DbSet<Type> Types { get; set; }
+
+        public virtual DbSet<Role> Roles { get; set; }
+
+        public virtual DbSet<Profil> Profils { get; set; }
+
+        public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<Environnement> Environnements { get; set; }
      
         public virtual DbSet<Historique> Historiques { get; set; }
         public virtual DbSet<PieceJointe> PieceJointes { get; set; }
         public DbSet<Personne> Personnes { get; set; }
 
-        public System.Data.Entity.DbSet<Metier.Domaine.Ticket> Tickets { get; set; }
+      
 
 
 
-        //public virtual DbSet<Ticket> Tickets { get; set; }
-
-        /*  protected override void OnModelCreating(DbModelBuilder modelBuilder)
-          {
-              modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-              modelBuilder.Entity<Course>()
-                  .HasMany(c => c.Instructors).WithMany(i => i.Courses)
-                  .Map(t => t.MapLeftKey("CourseID")
-                      .MapRightKey("InstructorID")
-                      .ToTable("CourseInstructor"));
-
-              modelBuilder.Entity<Department>().MapToStoredProcedures();
-          }*/
+        
 
     }
 

@@ -14,6 +14,9 @@ namespace Metier.Domaine
         /// </summary>
         //public int AssistantID { get; set; }
 
+        public Role Role { get; set; }
+        public int RoleID { get; set; }
+
         public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

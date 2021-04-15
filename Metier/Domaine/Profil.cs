@@ -13,19 +13,19 @@ namespace Metier.Domaine
     /// </summary>
    public class Profil
     {
-        public int IDProfil;
-        public string Libelle;
-        public bool Actif;
+        public int ProfilID { get; set; } 
+        public string Libelle { get; set; }
+        public bool Actif { get; set; }
 
-        public Profil(int id):base()
-        {
-           
-        }
+        /* public Profil(int id):base()
+         {
 
-        public Profil()
-        {
-            
-        }
+         }
+
+         public Profil()
+         {
+
+         }*/
     }
 
 

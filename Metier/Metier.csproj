@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -83,39 +86,20 @@
   <ItemGroup>
     <Compile Include="Domaine\Application.cs" />
     <Compile Include="Domaine\Assistant.cs" />
+    <Compile Include="Domaine\Historique.cs" />
     <Compile Include="Domaine\Modele.cs" />
     <Compile Include="Domaine\Personne.cs" />
     <Compile Include="Domaine\Profil.cs" />
     <Compile Include="Domaine\Ticket.cs" />
     <Compile Include="Domaine\Utilisateur.cs" />
     <Compile Include="Interfaces\IDomaine.cs" />
-    <Compile Include="Migrations\202104101036391_1.cs" />
-    <Compile Include="Migrations\202104101036391_1.Designer.cs">
-      <DependentUpon>202104101036391_1.cs</DependentUpon>
+    <Compile Include="Migrations\202104151631248_1.cs" />
+    <Compile Include="Migrations\202104151631248_1.Designer.cs">
+      <DependentUpon>202104151631248_1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104101044520_2.cs" />
-    <Compile Include="Migrations\202104101044520_2.Designer.cs">
-      <DependentUpon>202104101044520_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104101059124_3.cs" />
-    <Compile Include="Migrations\202104101059124_3.Designer.cs">
-      <DependentUpon>202104101059124_3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104101107238_4.cs" />
-    <Compile Include="Migrations\202104101107238_4.Designer.cs">
-      <DependentUpon>202104101107238_4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104101129076_5.cs" />
-    <Compile Include="Migrations\202104101129076_5.Designer.cs">
-      <DependentUpon>202104101129076_5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104102257278_7.cs" />
-    <Compile Include="Migrations\202104102257278_7.Designer.cs">
-      <DependentUpon>202104102257278_7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104110950027_8.cs" />
-    <Compile Include="Migrations\202104110950027_8.Designer.cs">
-      <DependentUpon>202104110950027_8.cs</DependentUpon>
+    <Compile Include="Migrations\202104151947559_2.cs" />
+    <Compile Include="Migrations\202104151947559_2.Designer.cs">
+      <DependentUpon>202104151947559_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeleHelpDesk.cs" />
@@ -132,27 +116,20 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104101036391_1.resx">
-      <DependentUpon>202104101036391_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104151631248_1.resx">
+      <DependentUpon>202104151631248_1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104101044520_2.resx">
-      <DependentUpon>202104101044520_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104101059124_3.resx">
-      <DependentUpon>202104101059124_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104101107238_4.resx">
-      <DependentUpon>202104101107238_4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104101129076_5.resx">
-      <DependentUpon>202104101129076_5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104102257278_7.resx">
-      <DependentUpon>202104102257278_7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104110950027_8.resx">
-      <DependentUpon>202104110950027_8.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104151947559_2.resx">
+      <DependentUpon>202104151947559_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

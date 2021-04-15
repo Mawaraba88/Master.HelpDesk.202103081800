@@ -19,7 +19,8 @@ namespace HelpDeskWeb.Controllers
         // GET: Utilisateurs
         public async Task<ActionResult> Index()
         {
-            return View(await db.Utilisateurs.ToListAsync());
+            var personnes = db.Utilisateurs.Include(u => u.Profil);
+            return View(await personnes.ToListAsync());
         }
 
         // GET: Utilisateurs/Details/5
@@ -40,6 +41,7 @@ namespace HelpDeskWeb.Controllers
         // GET: Utilisateurs/Create
         public ActionResult Create()
         {
+            ViewBag.ProfilID = new SelectList(db.Profils, "ProfilID", "Libelle");
             return View();
         }
 
@@ -48,7 +50,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Utilisateur utilisateur)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,ProfilID")] Utilisateur utilisateur)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +59,7 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ProfilID = new SelectList(db.Profils, "ProfilID", "Libelle", utilisateur.ProfilID);
             return View(utilisateur);
         }
 
@@ -72,6 +75,7 @@ namespace HelpDeskWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ProfilID = new SelectList(db.Profils, "ProfilID", "Libelle", utilisateur.ProfilID);
             return View(utilisateur);
         }
 
@@ -80,7 +84,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Utilisateur utilisateur)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,ProfilID")] Utilisateur utilisateur)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +92,7 @@ namespace HelpDeskWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.ProfilID = new SelectList(db.Profils, "ProfilID", "Libelle", utilisateur.ProfilID);
             return View(utilisateur);
         }
 

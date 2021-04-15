@@ -59,7 +59,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TicketID,TypeID,Resume,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
+        public async Task<ActionResult> Create([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +111,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TicketID,TypeID,Resume,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
+        public async Task<ActionResult> Edit([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CategorieID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
