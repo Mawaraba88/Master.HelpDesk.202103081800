@@ -8,5 +8,6 @@ namespace Metier.Interfaces
 {
   public  interface IDomaine
     {
+        
     }
 }

@@ -1,6 +1,6 @@
 ﻿#region Références importées
 
-using Microsoft.OData.Edm;
+//using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +20,10 @@ namespace Metier.Domaine
         public DateTime DateEcheance { get; set; }
         public DateTime DateCreation { get; set; }
         public DateTime DateResolution { get; set; }
+        
         public string Description { get; set; }
-
-
+        
+        
         public int TicketID
         {
             get { return this.idTicket; }
@@ -51,6 +52,8 @@ namespace Metier.Domaine
       
         public int PieceJointeID { get; set; }
         public int HistoriqueID { get; set; }
+
+        public int CommentaireID { get; set; }
 
 
        

@@ -29,8 +29,13 @@
   </Class>
   <Class Name="Metier.Domaine.Ticket">
     <Position X="3.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Environnement" Type="Metier.Domaine.Environnement">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.057" Y="-0.159" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>EAEBARAECFQhQAAgBEAAAAgIABAkAEAkAQAAAAgQIEA=</HashCode>
+      <HashCode>EAEBARAECFQhQAAgBEAAAAgIABAkgEAkAQAAAAgQIEA=</HashCode>
       <FileName>Domaine\Ticket.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -46,6 +51,7 @@
       <Property Name="Criticite" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
+      <Property Name="Commentaires" />
       <Property Name="PieceJointes" />
       <Property Name="Historiques" />
     </ShowAsCollectionAssociation>
@@ -146,6 +152,13 @@
     <Position X="10.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Domaine\Modele.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Metier.Domaine.Commentaire" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Domaine\Modele.cs</FileName>
     </TypeIdentifier>
   </Class>
