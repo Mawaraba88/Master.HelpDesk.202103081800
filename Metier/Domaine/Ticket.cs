@@ -3,6 +3,7 @@
 //using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,8 @@ namespace Metier.Domaine
         public string Resume { get; set; }
         public DateTime DateEcheance { get; set; }
         public DateTime DateCreation { get; set; }
-        public DateTime DateResolution { get; set; }
-        
+       // public DateTime DateResolution { get; set; }
+        [StringLength(50)]
         public string Description { get; set; }
         
         
@@ -47,50 +48,42 @@ namespace Metier.Domaine
 
         public Nullable<int> AssistantID { get; set; }
         public virtual Assistant Assistant { get; set; }
-        // public int? AssistantID { get; set; }
-       
-      
-        public int PieceJointeID { get; set; }
-        public int HistoriqueID { get; set; }
-
-        public int CommentaireID { get; set; }
-
-
+     
        
         public ICollection<Commentaire> Commentaires { get; set; }
 
 
-        public Categorie Categorie { get; set; }
+        public virtual Categorie Categorie { get; set; }
         public int CategorieID { get; set; }
 
        /* public Niveau Niveau { get; set; }
         public int NiveauID { get; set; }*/
-        public Priorite Priorite { get; set; }
+        public virtual Priorite Priorite { get; set; }
         public int PrioriteID { get; set; }
 
-        public Resolution Resolution { get; set; }
+        public virtual Resolution Resolution { get; set; }
         public int ResolutionID { get; set; }
 
 
-        public Statut Statut { get; set; }
+        public virtual Statut Statut { get; set; }
         public int StatutID { get; set; }
 
-        public Environnement Environnement { get; set; }
+        public virtual Environnement Environnement { get; set; }
         public int EnvironnementID { get; set; }
 
-        public Criticite Criticite { get; set; }
+        public virtual Criticite Criticite { get; set; }
         public int CriticiteID { get; set; }
 
-        public List<PieceJointe> PieceJointes { get; set; }
-        public List<Historique> Historiques { get; set; }
-
+       public virtual PieceJointe PieceJointe { get; set; }
+        public int? PieceJointeID { get; set; }
+        public virtual  List<Historique> Historiques { get; set; }
+      
         public Ticket()
         {
             this.Commentaires = new List<Commentaire>();
 
             this.Historiques = new List<Historique>();
 
-            this.PieceJointes = new List<PieceJointe>();
 
             //  ctrl+v = coller circulaire        public List<PieceJointe> PieceJointes { get; set; }
             // selection rectangulaire =  alt + souris

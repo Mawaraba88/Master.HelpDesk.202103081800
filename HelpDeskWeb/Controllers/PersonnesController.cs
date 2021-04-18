@@ -9,119 +9,110 @@ using System.Web;
 using System.Web.Mvc;
 using Metier;
 using Metier.Domaine;
-using HelpDeskWeb.Filters;
 
 namespace HelpDeskWeb.Controllers
 {
-    public class CategoriesController : Controller
+    public class PersonnesController : Controller
     {
         private ModeleHelpDesk db = new ModeleHelpDesk();
 
-        // GET: Categories
-        [CustomerAuthorisation(Roles = "Administrateur")]
+        // GET: Personnes
         public async Task<ActionResult> Index()
         {
-            return View(await db.Categories.ToListAsync());
+            return View(await db.Personnes.ToListAsync());
         }
 
-        // GET: Categories/Details/5
-        [CustomerAuthorisation(Roles = "Administrateur")]
+        // GET: Personnes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categorie categorie = await db.Categories.FindAsync(id);
-            if (categorie == null)
+            Personne personne = await db.Personnes.FindAsync(id);
+            if (personne == null)
             {
                 return HttpNotFound();
             }
-            return View(categorie);
+            return View(personne);
         }
 
-        // GET: Categories/Create
-        [CustomerAuthorisation(Roles = "Administrateur")]
+        // GET: Personnes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Personnes/Create
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomerAuthorisation(Roles = "Administrateur")]
-        public async Task<ActionResult> Create([Bind(Include = "CategorieID,Libelle")] Categorie categorie)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Personne personne)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(categorie);
+                db.Personnes.Add(personne);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(categorie);
+            return View(personne);
         }
 
-        // GET: Categories/Edit/5
-        [CustomerAuthorisation(Roles = "Administrateur")]
+        // GET: Personnes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categorie categorie = await db.Categories.FindAsync(id);
-            if (categorie == null)
+            Personne personne = await db.Personnes.FindAsync(id);
+            if (personne == null)
             {
                 return HttpNotFound();
             }
-            return View(categorie);
+            return View(personne);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Personnes/Edit/5
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomerAuthorisation(Roles = "Administrateur")]
-        public async Task<ActionResult> Edit([Bind(Include = "CategorieID,Libelle")] Categorie categorie)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse")] Personne personne)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categorie).State = EntityState.Modified;
+                db.Entry(personne).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(categorie);
+            return View(personne);
         }
 
-        // GET: Categories/Delete/5
-        [CustomerAuthorisation(Roles = "Administrateur")]
+        // GET: Personnes/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categorie categorie = await db.Categories.FindAsync(id);
-            if (categorie == null)
+            Personne personne = await db.Personnes.FindAsync(id);
+            if (personne == null)
             {
                 return HttpNotFound();
             }
-            return View(categorie);
+            return View(personne);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Personnes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [CustomerAuthorisation(Roles = "Administrateur")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Categorie categorie = await db.Categories.FindAsync(id);
-            db.Categories.Remove(categorie);
+            Personne personne = await db.Personnes.FindAsync(id);
+            db.Personnes.Remove(personne);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

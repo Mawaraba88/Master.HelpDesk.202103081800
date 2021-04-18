@@ -35,7 +35,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>EAEBARAECFQhQAAgBEAAAAgIABAkgEAkAQAAAAgQIEA=</HashCode>
+      <HashCode>AAEBARAECFQhQAAgBEAAAAgIAAAkAEAkAQAAAAgQIEA=</HashCode>
       <FileName>Domaine\Ticket.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -52,7 +52,6 @@
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Commentaires" />
-      <Property Name="PieceJointes" />
       <Property Name="Historiques" />
     </ShowAsCollectionAssociation>
   </Class>

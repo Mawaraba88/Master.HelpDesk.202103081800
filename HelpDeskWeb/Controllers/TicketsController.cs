@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using Metier;
 using Metier.Domaine;
+using System.Web.Security;
+using HelpDeskWeb.Filters;
 
 namespace HelpDeskWeb.Controllers
 {
@@ -37,7 +39,7 @@ namespace HelpDeskWeb.Controllers
             }
             return View(ticket);
         }
-
+        [CustomerAuthorisation]
         // GET: Tickets/Create
         public ActionResult Create()
         {
@@ -59,6 +61,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomerAuthorisation]
         public async Task<ActionResult> Create([Bind(Include = "TicketID,TypeID,Resume,DateEcheance,DateCreation,DateResolution,Description,UtilisateurID,ApplicationID,AssistantID,PieceJointeID,HistoriqueID,CommentaireID,CategorieID,PrioriteID,ResolutionID,StatutID,EnvironnementID,CriticiteID")] Ticket ticket)
         {
             if (ModelState.IsValid)

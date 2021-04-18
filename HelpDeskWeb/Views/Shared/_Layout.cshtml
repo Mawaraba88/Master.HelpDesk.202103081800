@@ -69,35 +69,47 @@
                         <li class="nav-item active">
                             @Html.ActionLink("Home", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
                         </li>
-                        <li class="nav-item active">
-                            @Html.ActionLink("Liste des Tickets", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                             <li class="nav-item active">
+                                 @Html.ActionLink("Liste des Tickets", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
 
-                        <li class="nav-item ">
-                            @Html.ActionLink("Ajout Tickets", "Create", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
-                        </li>
+                             </li>
+                             <li class="nav-item ">
+                                @Html.ActionLink("Ajout Tickets", "Create", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
+                           
+                             </li>
+                            if (User.IsInRole("Administrateur"))
+                            {
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                Configurations
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @Html.ActionLink("Categories", "Index", "Categories", new { area = "Configuration" }, null)
-                                <div class="dropdown-divider"></div>
-                                @Html.ActionLink("Applications", "Index", "Applications", new { area = "Configuration" }, null)
-                                <div class="dropdown-divider"></div>
-                                @Html.ActionLink("Profils", "Index", "Profils", new { area = "Configuration" }, null)
-                                <div class="dropdown-divider"></div>
-                                @Html.ActionLink("Utilisateurs", "Index", "Utilisateurs", new { area = "Configurations" }, null)
-                                <div class="dropdown-divider"></div>
-                                @Html.ActionLink("Roles", "Index", "Roles", new { area = "Configuration" }, null)
-                                <div class="dropdown-divider"></div>
-                                @Html.ActionLink("Assistants", "Index", "Assistants", new { area = "Configuration" }, null)
-                                
-                            </div>
-                        </li>
-                      *
-                    </ul>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Configurations
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @Html.ActionLink("Categories", "Index", "Categories", new { area = "Configuration" }, null)
+                                        <div class="dropdown-divider"></div>
+                                        @Html.ActionLink("Applications", "Index", "Applications", new { area = "Configuration" }, null)
+                                        <div class="dropdown-divider"></div>
+                                        @Html.ActionLink("Profils", "Index", "Profils", new { area = "Configuration" }, null)
+                                        <div class="dropdown-divider"></div>
+                                        @Html.ActionLink("Utilisateurs", "Index", "Utilisateurs", new { area = "Configurations" }, null)
+                                        <div class="dropdown-divider"></div>
+                                        @Html.ActionLink("Roles", "Index", "Roles", new { area = "Configuration" }, null)
+                                        <div class="dropdown-divider"></div>
+                                        @Html.ActionLink("Assistants", "Index", "Assistants", new { area = "Configuration" }, null)
+
+                                    </div>
+                                </li>
+                                }
+                            }
+
+
+
+
+
+                            @Html.Partial("_LoginPartial")
+                        </ul>
 
                 </div>
             </div>
