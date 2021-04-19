@@ -15,31 +15,10 @@
             @Html.DisplayNameFor(model => model.Applications.Libelle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Assistant.Nom)
+            @Html.DisplayNameFor(model => model.PieceJointe.Libelle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Categorie.Libelle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Criticite.Libelle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Environnement.Libelle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Priorite.Libelle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Resolution.Libelle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Statut.Libelle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type.Libelle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
+            @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Resume)
@@ -51,19 +30,22 @@
             @Html.DisplayNameFor(model => model.DateCreation)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateResolution)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PieceJointeID)
+            @Html.DisplayNameFor(model => model.Priorite)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HistoriqueID)
+            @Html.DisplayNameFor(model => model.Resolution)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CommentaireID)
+            @Html.DisplayNameFor(model => model.Statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Environnement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Criticite)
         </th>
         <th></th>
     </tr>
@@ -74,31 +56,10 @@
             @Html.DisplayFor(modelItem => item.Applications.Libelle)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Assistant.Nom)
+            @Html.DisplayFor(modelItem => item.PieceJointe.Libelle)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Categorie.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Criticite.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Environnement.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Priorite.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Resolution.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Statut.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Utilisateur.Nom)
+            @Html.DisplayFor(modelItem => item.Type)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Resume)
@@ -110,19 +71,22 @@
             @Html.DisplayFor(modelItem => item.DateCreation)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateResolution)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PieceJointeID)
+            @Html.DisplayFor(modelItem => item.Priorite)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HistoriqueID)
+            @Html.DisplayFor(modelItem => item.Resolution)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CommentaireID)
+            @Html.DisplayFor(modelItem => item.Statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Environnement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Criticite)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TicketID }) |

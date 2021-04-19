@@ -1,5 +1,7 @@
 namespace Metier.Migrations
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Outils;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,6 +16,8 @@ namespace Metier.Migrations
 
         protected override void Seed(Metier.ModeleHelpDesk context)
         {
+
+            //this.SeedRoles(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -27,5 +31,11 @@ namespace Metier.Migrations
             //    );
             //
         }
+
+       /* private void SeedRoles(Metier.ModeleHelpDesk context)
+        {
+            context.Roles.AddOrUpdate(x => x.Libelle, new IdentityRole(GlobalConstants.AdminRole));
+            context.SaveChanges();
+        }*/
     }
 }

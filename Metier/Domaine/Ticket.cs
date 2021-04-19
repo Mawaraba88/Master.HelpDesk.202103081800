@@ -3,6 +3,7 @@
 //using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -13,23 +14,21 @@ namespace Metier.Domaine
 {
     public class Ticket
     {
-        #region Propriétés
-        private int idTicket;
+        [DefaultValue(Type.Bogue)]
         public Type Type { get; set; }
-        public int TypeID { get; set; }
+      
         public string Resume { get; set; }
-        public DateTime DateEcheance { get; set; }
-        public DateTime DateCreation { get; set; }
-       // public DateTime DateResolution { get; set; }
-        [StringLength(50)]
+        public DateTime? DateEcheance { get; set; }
+        public DateTime? DateCreation { get; set; }
+        
+        [Required]
+        [StringLength(1000, MinimumLength = 20)]
+        [UIHint("MultiLineText")]
         public string Description { get; set; }
         
         
-        public int TicketID
-        {
-            get { return this.idTicket; }
-            set { this.idTicket = value; }
-        }
+        public int TicketID { get; set; }
+        
         // prop (snippet)
        
 
@@ -38,9 +37,9 @@ namespace Metier.Domaine
         {
             get { return this.Temps / 6; }
         }*/
-        #endregion
-        public int UtilisateurID { get; set; }
-        public virtual Utilisateur Utilisateur { get; set; }
+       
+        /*public int UtilisateurID { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }*/
        
 
         public Application Applications { get; set; }
@@ -48,41 +47,34 @@ namespace Metier.Domaine
 
         public Nullable<int> AssistantID { get; set; }
         public virtual Assistant Assistant { get; set; }
-     
+
+
+        [DefaultValue(Priorite.Bas)]
+        public  Priorite Priorite { get; set; }
+
+        [DefaultValue(Resolution.Ouvert)]
+        public  Resolution Resolution { get; set; }
+        [DefaultValue(Statut.Nouveau)]
+        public  Statut Statut { get; set; }
+        [DefaultValue(Environnement.Developpement)]
+        public  Environnement Environnement { get; set; }
+        [DefaultValue(Criticite.Bloquante)]
+        public  Criticite Criticite { get; set; }
        
-        public ICollection<Commentaire> Commentaires { get; set; }
 
-
-        public virtual Categorie Categorie { get; set; }
-        public int CategorieID { get; set; }
-
-       /* public Niveau Niveau { get; set; }
-        public int NiveauID { get; set; }*/
-        public virtual Priorite Priorite { get; set; }
-        public int PrioriteID { get; set; }
-
-        public virtual Resolution Resolution { get; set; }
-        public int ResolutionID { get; set; }
-
-
-        public virtual Statut Statut { get; set; }
-        public int StatutID { get; set; }
-
-        public virtual Environnement Environnement { get; set; }
-        public int EnvironnementID { get; set; }
-
-        public virtual Criticite Criticite { get; set; }
-        public int CriticiteID { get; set; }
-
-       public virtual PieceJointe PieceJointe { get; set; }
+        public virtual PieceJointe PieceJointe { get; set; }
         public int? PieceJointeID { get; set; }
-        public virtual  List<Historique> Historiques { get; set; }
-      
+        public  ICollection<Historique> Historiques { get; set; }
+        public ICollection<Commentaire> Commentaires { get; set; }
+       
         public Ticket()
         {
-            this.Commentaires = new List<Commentaire>();
+            this.Commentaires = new HashSet<Commentaire>();
 
-            this.Historiques = new List<Historique>();
+            this.Historiques = new HashSet<Historique>();
+
+            DateCreation = DateTime.Now;
+            DateEcheance = DateTime.Now;
 
 
             //  ctrl+v = coller circulaire        public List<PieceJointe> PieceJointes { get; set; }
@@ -99,5 +91,6 @@ namespace Metier.Domaine
             ti[0] = 1;
         }
 
+     
     }
 }

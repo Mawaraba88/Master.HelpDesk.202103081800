@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Data, Version=5.0.0.0, Culture=neutral, PublicKeyToken=c81663b416b68723, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.Data.5.0.0\lib\net461\AutoMapper.Data.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -52,11 +58,30 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,33 +152,24 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\AssistantsController.cs" />
     <Compile Include="Controllers\AuthorisationController.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentairesController.cs" />
-    <Compile Include="Controllers\CriticitesController.cs" />
-    <Compile Include="Controllers\EnvironnementsController.cs" />
-    <Compile Include="Controllers\HistoriquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
-    <Compile Include="Controllers\PersonnesController.cs" />
-    <Compile Include="Controllers\PieceJointesController.cs" />
-    <Compile Include="Controllers\PrioritesController.cs" />
-    <Compile Include="Controllers\ProfilsController.cs" />
-    <Compile Include="Controllers\ResolutionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\StatutsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
-    <Compile Include="Controllers\TypesController.cs" />
-    <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Filters\CustomerAuthorisationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Commentaire\PostCommentViewModel.cs" />
+    <Compile Include="ViewModels\ListTicketViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\AddTicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -336,6 +352,7 @@
     <Content Include="libman.json" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.woff" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.ttf" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -782,81 +799,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Applications\Create.cshtml" />
-    <Content Include="Views\Applications\Delete.cshtml" />
-    <Content Include="Views\Applications\Details.cshtml" />
-    <Content Include="Views\Applications\Edit.cshtml" />
-    <Content Include="Views\Applications\Index.cshtml" />
-    <Content Include="Views\Assistants\Create.cshtml" />
-    <Content Include="Views\Assistants\Delete.cshtml" />
-    <Content Include="Views\Assistants\Details.cshtml" />
-    <Content Include="Views\Assistants\Edit.cshtml" />
-    <Content Include="Views\Assistants\Index.cshtml" />
-    <Content Include="Views\Roles\Create.cshtml" />
-    <Content Include="Views\Roles\Delete.cshtml" />
-    <Content Include="Views\Roles\Details.cshtml" />
-    <Content Include="Views\Roles\Edit.cshtml" />
-    <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Commentaires\Create.cshtml" />
-    <Content Include="Views\Commentaires\Delete.cshtml" />
-    <Content Include="Views\Commentaires\Details.cshtml" />
-    <Content Include="Views\Commentaires\Edit.cshtml" />
-    <Content Include="Views\Commentaires\Index.cshtml" />
-    <Content Include="Views\Criticites\Create.cshtml" />
-    <Content Include="Views\Criticites\Delete.cshtml" />
-    <Content Include="Views\Criticites\Details.cshtml" />
-    <Content Include="Views\Criticites\Edit.cshtml" />
-    <Content Include="Views\Criticites\Index.cshtml" />
-    <Content Include="Views\Environnements\Create.cshtml" />
-    <Content Include="Views\Environnements\Delete.cshtml" />
-    <Content Include="Views\Environnements\Details.cshtml" />
-    <Content Include="Views\Environnements\Edit.cshtml" />
-    <Content Include="Views\Environnements\Index.cshtml" />
-    <Content Include="Views\Historiques\Create.cshtml" />
-    <Content Include="Views\Historiques\Delete.cshtml" />
-    <Content Include="Views\Historiques\Details.cshtml" />
-    <Content Include="Views\Historiques\Edit.cshtml" />
-    <Content Include="Views\Historiques\Index.cshtml" />
-    <Content Include="Views\PieceJointes\Create.cshtml" />
-    <Content Include="Views\PieceJointes\Delete.cshtml" />
-    <Content Include="Views\PieceJointes\Details.cshtml" />
-    <Content Include="Views\PieceJointes\Edit.cshtml" />
-    <Content Include="Views\PieceJointes\Index.cshtml" />
-    <Content Include="Views\Priorites\Create.cshtml" />
-    <Content Include="Views\Priorites\Delete.cshtml" />
-    <Content Include="Views\Priorites\Details.cshtml" />
-    <Content Include="Views\Priorites\Edit.cshtml" />
-    <Content Include="Views\Priorites\Index.cshtml" />
-    <Content Include="Views\Profils\Create.cshtml" />
-    <Content Include="Views\Profils\Delete.cshtml" />
-    <Content Include="Views\Profils\Details.cshtml" />
-    <Content Include="Views\Profils\Edit.cshtml" />
-    <Content Include="Views\Profils\Index.cshtml" />
-    <Content Include="Views\Resolutions\Create.cshtml" />
-    <Content Include="Views\Resolutions\Delete.cshtml" />
-    <Content Include="Views\Resolutions\Details.cshtml" />
-    <Content Include="Views\Resolutions\Edit.cshtml" />
-    <Content Include="Views\Resolutions\Index.cshtml" />
-    <Content Include="Views\Statuts\Create.cshtml" />
-    <Content Include="Views\Statuts\Delete.cshtml" />
-    <Content Include="Views\Statuts\Details.cshtml" />
-    <Content Include="Views\Statuts\Edit.cshtml" />
-    <Content Include="Views\Statuts\Index.cshtml" />
-    <Content Include="Views\Types\Create.cshtml" />
-    <Content Include="Views\Types\Delete.cshtml" />
-    <Content Include="Views\Types\Details.cshtml" />
-    <Content Include="Views\Types\Edit.cshtml" />
-    <Content Include="Views\Types\Index.cshtml" />
-    <Content Include="Views\Utilisateurs\Create.cshtml" />
-    <Content Include="Views\Utilisateurs\Delete.cshtml" />
-    <Content Include="Views\Utilisateurs\Details.cshtml" />
-    <Content Include="Views\Utilisateurs\Edit.cshtml" />
-    <Content Include="Views\Utilisateurs\Index.cshtml" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.window.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.view.min.js.map" />
@@ -923,21 +865,40 @@
     <Content Include="Scripts\kendo\2014.1.318\kendo.binder.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.318\jquery.min.map" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Logins\Login.cshtml" />
+    <Content Include="Views\Authorisation\AccessDenied.cshtml" />
+    <Content Include="Views\Applications\Create.cshtml" />
+    <Content Include="Views\Applications\Delete.cshtml" />
+    <Content Include="Views\Applications\Details.cshtml" />
+    <Content Include="Views\Applications\Edit.cshtml" />
+    <Content Include="Views\Applications\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Assistants\Create.cshtml" />
+    <Content Include="Views\Assistants\Delete.cshtml" />
+    <Content Include="Views\Assistants\Details.cshtml" />
+    <Content Include="Views\Assistants\Edit.cshtml" />
+    <Content Include="Views\Assistants\Index.cshtml" />
     <Content Include="Views\Tickets\Create.cshtml" />
     <Content Include="Views\Tickets\Delete.cshtml" />
     <Content Include="Views\Tickets\Details.cshtml" />
     <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Logins\Login.cshtml" />
-    <Content Include="Views\Authorisation\AccessDenied.cshtml" />
+    <Content Include="Views\Commentaires\Create.cshtml" />
+    <Content Include="Views\Commentaires\Delete.cshtml" />
+    <Content Include="Views\Commentaires\Details.cshtml" />
+    <Content Include="Views\Commentaires\Edit.cshtml" />
+    <Content Include="Views\Commentaires\Index.cshtml" />
+    <Content Include="Views\Tickets\_PartialCommentaire.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="ViewsModels\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Personnes\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

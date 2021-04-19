@@ -21,63 +21,86 @@ namespace Metier.Domaine
 
         public int Encours() { return -1; }
     }
-    
+
 
     public class Commentaire
     {
-        public int CommentaireID{ get; set; }
+        public int CommentaireID { get; set; }
         [Required]
-        [StringLength(1000, MinimumLength = 50)]
+        [StringLength(1000, MinimumLength = 20)]
         [UIHint("MultiLineText")]
         public string Contenu { get; set; }
+
+        public virtual Assistant Assistant {get; set; }
+        public int AssistantID { get; set; }
+
+        /*public virtual Utilisateur Utilisateur { get; set; }
+
+        public int UtilisateurID { get; set; }*/
+        public int TicketId { get; set; }
+        public virtual Ticket Ticket { get; set; }
+
+       
     }
 
-    public class Criticite
+    public enum Criticite
     {
-        public int CriticiteID { get; set; }
-        public string Libelle { get; set; }
+       Aucune = 0,
+       Bloquante = 1,
+       Majeure = 2,
+       Mineure = 3
     }
 
 
 
-    public class Type
+    public enum Type
     {
 
-        public int TypeID { get; set; }
-        public string Libelle { get; set; }
-
+       Bogue = 0,
+       Test = 1,
+       Interface = 2,
+       Tâche = 3,
+       Question = 4,
+       Probleme = 5
+         
     }
-
+/*
     public class Niveau
     {
         public int NiveauID { get; set; }
         public string Libelle { get; set; } // Utilisateur, Service, Département,Direction, Etablissement, Groupe, Pays...
 
-    }
+    }*/
 
-    public class Categorie
-    {
-        public int CategorieID { get; set; }
-        public string Libelle { get; set; }
-    }
+ 
 
-    public class Environnement
+    public enum Environnement
     {
-        public int EnvironnementID { get; set; }
-        public string Libelle { get; set; }
-    }
-
-    public class Priorite
-    {
-        public int PrioriteID { get; set; }
-        public string Libelle { get; set; }
+      Developpement = 0,
+      Test = 1,
+      Formation = 2,
+      Préproduction = 3,
+      Production = 4
 
     }
 
-    public class Resolution
+    public enum Priorite
     {
-        public int ResolutionID { get; set; }
-        public string Libelle { get; set; }
+       Haute = 0,
+       Urgent = 1,
+       Normal = 2,
+       Immediat = 3,
+       Bas = 4
+
+    }
+
+    public enum Resolution
+    {
+        Ouvert = 0,
+        Résolu = 1,
+        Fermé = 2,
+        Archivé = 3
+
     }
 
 
@@ -89,141 +112,17 @@ namespace Metier.Domaine
         public string Libelle { get; set; }
     }
 
-    /*public class Historique
+  
+
+    public enum Statut
     {
-
-        public int HistoriqueID { get; set; }
-        public string Libelle { get; set; }
-
-       public int Assistant
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-     
-        public int DateCreation
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int PieceJointe
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int PieceJointeID
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int Priorite
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int PrioriteID
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int Resolution
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int ResolutionID
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int Statut
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int StatutID
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int Ticket
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int TicketID
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int Utilisateur
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int UtilisateurID
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int AssistantID
-        {
-            get => default;
-            set
-            {
-            }
-        }
-    }*/
-
-
-    public class Statut
-    {
-        public int StatutID { get; set; }
-        public string Libelle { get; set; }
+       Nouveau = 0,
+       Ouvert = 1,
+       Résolu = 2,
+       Fermé = 3
 
     }
+
 
 
 

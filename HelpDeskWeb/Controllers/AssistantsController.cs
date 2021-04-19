@@ -50,7 +50,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,RoleID")] Assistant assistant)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,Service,RoleID")] Assistant assistant)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,RoleID")] Assistant assistant)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Nom,Prenom,Email,MotDePasse,Service,RoleID")] Assistant assistant)
         {
             if (ModelState.IsValid)
             {
@@ -130,7 +130,5 @@ namespace HelpDeskWeb.Controllers
             }
             base.Dispose(disposing);
         }
-
-
     }
 }

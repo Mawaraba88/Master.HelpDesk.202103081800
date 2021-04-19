@@ -19,7 +19,8 @@ namespace HelpDeskWeb.Controllers
         // GET: Commentaires
         public async Task<ActionResult> Index()
         {
-            return View(await db.Commentaires.ToListAsync());
+            var commentaires = db.Commentaires.Include(c => c.Assistant).Include(c => c.Ticket);
+            return View(await commentaires.ToListAsync());
         }
 
         // GET: Commentaires/Details/5
@@ -40,6 +41,8 @@ namespace HelpDeskWeb.Controllers
         // GET: Commentaires/Create
         public ActionResult Create()
         {
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom");
+            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume");
             return View();
         }
 
@@ -48,7 +51,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CommentaireID,Contenu")] Commentaire commentaire)
+        public async Task<ActionResult> Create([Bind(Include = "CommentaireID,Contenu,AssistantID,TicketId")] Commentaire commentaire)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +60,11 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(commentaire);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", commentaire.AssistantID);
+            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
+            //return View(commentaire);
+
+            return PartialView("_PartialCommentaire");
         }
 
         // GET: Commentaires/Edit/5
@@ -72,6 +79,8 @@ namespace HelpDeskWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", commentaire.AssistantID);
+            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
             return View(commentaire);
         }
 
@@ -80,7 +89,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CommentaireID,Contenu")] Commentaire commentaire)
+        public async Task<ActionResult> Edit([Bind(Include = "CommentaireID,Contenu,AssistantID,TicketId")] Commentaire commentaire)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +97,8 @@ namespace HelpDeskWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", commentaire.AssistantID);
+            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
             return View(commentaire);
         }
 

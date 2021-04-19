@@ -13,6 +13,6 @@ namespace Metier.Domaine
        public  Profil Profil { get; set; }
         public int ProfilID { get; set; }
 
-        public virtual ICollection<Ticket> Tickets { get; set; }
+        //public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

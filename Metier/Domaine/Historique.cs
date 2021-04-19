@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 
@@ -15,29 +16,32 @@ namespace Metier.Domaine
         public Nullable<int> AssistantID { get; set; }
         public virtual Assistant Assistant { get; set; }
 
-        public PieceJointe PieceJointe { get; set; }
-        public int PieceJointeID { get; set; }
-
+        [DefaultValue(Priorite.Bas)]
         public Priorite Priorite { get; set; }
-        public int PrioriteID { get; set; }
 
+        [DefaultValue(Resolution.Ouvert)]
         public Resolution Resolution { get; set; }
-        public int ResolutionID { get; set; }
-
+        [DefaultValue(Statut.Nouveau)]
         public Statut Statut { get; set; }
-        public int StatutID { get; set; }
+        [DefaultValue(Environnement.Developpement)]
+        public Environnement Environnement { get; set; }
+        [DefaultValue(Criticite.Bloquante)]
+        public Criticite Criticite { get; set; }
 
-        /*public Ticket Ticket { get; set; }
-        public int TicketID { get; set; }*/
-        public int UtilisateurID { get; set; }
-        public virtual Utilisateur Utilisateur { get; set; }
+        public Ticket Ticket { get; set; }
+        public int TicketID { get; set; }
 
-        public List<PieceJointe> PieceJointes { get; set; }
+        public virtual PieceJointe PieceJointe { get; set; }
+        public int? PieceJointeID { get; set; }
+        /*public int UtilisateurID { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }*/
+
+       
 
 
         public Historique()
         {
-            this.PieceJointes = new List<PieceJointe>();
+           
         }
     }
 }

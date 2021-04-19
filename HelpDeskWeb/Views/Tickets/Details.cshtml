@@ -1,4 +1,6 @@
-﻿@model Metier.Domaine.Ticket
+﻿@using HelpDeskWeb.ViewModels.Commentaires
+
+@model Metier.Domaine.Ticket
 
 @{
     ViewBag.Title = "Details";
@@ -17,77 +19,23 @@
         <dd>
             @Html.DisplayFor(model => model.Applications.Libelle)
         </dd>
+        <!--
+            <dt>
+                @Html.DisplayNameFor(model => model.PieceJointe.Libelle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PieceJointe.Libelle)
+            </dd>
+        -->
+
 
         <dt>
-            @Html.DisplayNameFor(model => model.Assistant.Nom)
+            @Html.DisplayNameFor(model => model.Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Assistant.Nom)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Categorie.Libelle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Categorie.Libelle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Criticite.Libelle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Criticite.Libelle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Environnement.Libelle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Environnement.Libelle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Priorite.Libelle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Priorite.Libelle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Resolution.Libelle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Resolution.Libelle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Statut.Libelle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Statut.Libelle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type.Libelle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type.Libelle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Utilisateur.Nom)
+            @Html.DisplayFor(model => model.Type)
         </dd>
 
         <dt>
@@ -115,14 +63,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateResolution)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateResolution)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
 
@@ -131,33 +71,66 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PieceJointeID)
+            @Html.DisplayNameFor(model => model.Priorite)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PieceJointeID)
+            @Html.DisplayFor(model => model.Priorite)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HistoriqueID)
+            @Html.DisplayNameFor(model => model.Resolution)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HistoriqueID)
+            @Html.DisplayFor(model => model.Resolution)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CommentaireID)
+            @Html.DisplayNameFor(model => model.Statut)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CommentaireID)
+            @Html.DisplayFor(model => model.Statut)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Environnement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Environnement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Criticite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Criticite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaires)
+        </dt>
+
+
 
     </dl>
+
+    <div class="col-md-4">
+        @if (Model.PieceJointeID != null)
+        {
+            <img src="@Url.Action("PieceJointe", "Tickets", new { id = Model.PieceJointeID.Value })" class="img-responsive" />}
+    </div>
+
 </div>
+
+@Html.Partial("_PartialCommentaire", new PostCommentViewModel(Model.TicketID))
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.TicketID }) |
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Ajouter un commentaire", "Create","Commentaires")
+
+    @Html.ActionLink("Back to List", "Index")|
+
+    @Html.ActionLink("Ajouter un commentaire", "Create", "Commentaires")
 </p>

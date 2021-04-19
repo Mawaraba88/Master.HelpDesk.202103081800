@@ -17,7 +17,7 @@ namespace Metier
     {
 
         #region Attributs
-        private List<Statut> statuts;
+       /* private List<Statut> statuts;
 
         private List<Application> applications;
 
@@ -25,7 +25,7 @@ namespace Metier
 
         private List<Priorite> priorites;
 
-        private List<Type> types;
+        private List<Type> types;*/
         #endregion
 
         #region Propriétés
@@ -104,7 +104,7 @@ namespace Metier
         /// </summary>
         public void Initialisations()
         {
-            this.statuts = new List<Statut>
+           /* this.statuts = new List<Statut>
             {
                 new Statut{StatutID=10,Libelle="Nouveau"},
                 new Statut{StatutID=20,Libelle="Ouvert"},
@@ -147,7 +147,7 @@ namespace Metier
                 new Type{TypeID=30,Libelle="Mise à jour"},
             };
 
-
+            */
             
         }
         #endregion
