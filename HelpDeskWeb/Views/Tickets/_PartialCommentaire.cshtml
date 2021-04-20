@@ -1,6 +1,6 @@
 ﻿
 @model HelpDeskWeb.ViewModels.Commentaires.PostCommentViewModel
-@using (Ajax.BeginForm("Create", "Commentaires",
+@using (Ajax.BeginForm("Details", "Tickets",
         new AjaxOptions
         {
             HttpMethod = "POST",
@@ -8,14 +8,14 @@
             UpdateTargetId = "commentaires"
         }))
 {
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-                @Html.HiddenFor(m => m.TicketID)
-                                @Html.EditorFor(m => m.Contenu)
+    @Html.HiddenFor(m => m.TicketID)
+    @Html.EditorFor(m => m.Contenu)
 
-                                                <div class="col-md-5">
-                                                    <input type="submit" class="btn btn-default pull-right" />
-                                                </div>}
+    <div class="col-md-5">
+        <input type="submit" class="btn btn-default pull-right" />
+    </div>}
 <br />
 <br />
 <br />

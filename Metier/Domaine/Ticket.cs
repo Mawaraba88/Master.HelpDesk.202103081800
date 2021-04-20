@@ -14,6 +14,10 @@ namespace Metier.Domaine
 {
     public class Ticket
     {
+
+        private ICollection<Commentaire> commentaires;
+        private ICollection<Historique> historiques;
+
         [DefaultValue(Type.Bogue)]
         public Type Type { get; set; }
       
@@ -64,14 +68,22 @@ namespace Metier.Domaine
 
         public virtual PieceJointe PieceJointe { get; set; }
         public int? PieceJointeID { get; set; }
-        public  ICollection<Historique> Historiques { get; set; }
-        public ICollection<Commentaire> Commentaires { get; set; }
+        public virtual ICollection<Historique> Historiques
+        {
+            get { return this.historiques; }
+            set { this.historiques = value; }
+        }
+        public virtual ICollection<Commentaire> Commentaires
+        { 
+            get { return this.commentaires; }
+            set { this.commentaires = value; }
+        }
        
         public Ticket()
         {
-            this.Commentaires = new HashSet<Commentaire>();
+            this.commentaires = new HashSet<Commentaire>();
 
-            this.Historiques = new HashSet<Historique>();
+            this.historiques = new HashSet<Historique>();
 
             DateCreation = DateTime.Now;
             DateEcheance = DateTime.Now;

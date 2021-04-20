@@ -64,6 +64,14 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.AssistantID, "AssistantID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("AssistantID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AssistantID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.Priorite, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EnumDropDownListFor(model => model.Priorite, htmlAttributes: new { @class = "form-control" })
@@ -102,15 +110,6 @@
             @Html.ValidationMessageFor(model => model.Criticite, "", new { @class = "text-danger" })
         </div>
     </div>
-    <!--
-            <div class="form-group">
-                @Html.LabelFor(model => model.PieceJointeID, "PieceJointeID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("PieceJointeID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PieceJointeID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        -->
 
     <div class="row">
         <div class="col-md-2">
@@ -120,6 +119,7 @@
             <input type="file" name="UploadedPieceJointe" />
         </div>
     </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />

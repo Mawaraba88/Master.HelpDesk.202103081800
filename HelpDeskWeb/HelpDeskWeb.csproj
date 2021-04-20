@@ -888,12 +888,12 @@
     <Content Include="Views\Tickets\Details.cshtml" />
     <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\Tickets\_PartialCommentaire.cshtml" />
     <Content Include="Views\Commentaires\Create.cshtml" />
     <Content Include="Views\Commentaires\Delete.cshtml" />
     <Content Include="Views\Commentaires\Details.cshtml" />
     <Content Include="Views\Commentaires\Edit.cshtml" />
     <Content Include="Views\Commentaires\Index.cshtml" />
-    <Content Include="Views\Tickets\_PartialCommentaire.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

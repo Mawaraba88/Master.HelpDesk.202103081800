@@ -57,12 +57,12 @@ namespace HelpDeskWeb.Controllers
             {
                 db.Commentaires.Add(commentaire);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return PartialView("_PartialCommentaire");
             }
 
             ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", commentaire.AssistantID);
             ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
-            //return View(commentaire);
+           // return View(commentaire);
 
             return PartialView("_PartialCommentaire");
         }

@@ -19,7 +19,7 @@ namespace HelpDeskWeb.Controllers
         // GET: Tickets
         public async Task<ActionResult> Index()
         {
-            var tickets = db.Tickets.Include(t => t.Applications).Include(t => t.PieceJointe);
+            var tickets = db.Tickets.Include(t => t.Applications).Include(t => t.Assistant).Include(t => t.PieceJointe);
             return View(await tickets.ToListAsync());
         }
 
@@ -42,6 +42,7 @@ namespace HelpDeskWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle");
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom");
             ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "PieceJointeID", "Libelle");
             return View();
         }
@@ -51,7 +52,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
+        public async Task<ActionResult> Create([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +62,7 @@ namespace HelpDeskWeb.Controllers
             }
 
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
             ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "PieceJointeID", "Libelle", ticket.PieceJointeID);
             return View(ticket);
         }
@@ -78,6 +80,7 @@ namespace HelpDeskWeb.Controllers
                 return HttpNotFound();
             }
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
             ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "PieceJointeID", "Libelle", ticket.PieceJointeID);
             return View(ticket);
         }
@@ -87,7 +90,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
+        public async Task<ActionResult> Edit([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -96,6 +99,7 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
             ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "PieceJointeID", "Libelle", ticket.PieceJointeID);
             return View(ticket);
         }
