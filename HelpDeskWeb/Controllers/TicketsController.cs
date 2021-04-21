@@ -9,9 +9,42 @@ using System.Web;
 using System.Web.Mvc;
 using Metier;
 using Metier.Domaine;
+using HelpDeskWeb.Service;
+using Metier.Interfaces;
+using Kendo.Mvc.UI;
+using AutoMapper.QueryableExtensions;
+using Kendo.Mvc.Extensions;
+using HelpDeskWeb.ViewModels;
+using AutoMapper;
+using System.IO;
+using HelpDeskWeb.ViewModels.Ticket;
+using HelpDeskWeb.Filters;
 
 namespace HelpDeskWeb.Controllers
 {
+
+    /*using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
+    using Metier;
+    using Metier.Domaine;
+    using HelpDeskWeb.Service;
+    using Metier.Interfaces;
+    using Kendo.Mvc.UI;
+    using AutoMapper.QueryableExtensions;
+    using Kendo.Mvc.Extensions;
+    using HelpDeskWeb.ViewModels;
+    using AutoMapper;
+    using System.IO;
+    using HelpDeskWeb.ViewModels.Ticket;
+    using HelpDeskWeb.ViewModels.Commentaires;*/
+
     public class TicketsController : Controller
     {
         private ModeleHelpDesk db = new ModeleHelpDesk();
@@ -39,6 +72,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Tickets/Create
+        [CustomerAuthorisation]
         public ActionResult Create()
         {
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle");
@@ -52,6 +86,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomerAuthorisation]
         public async Task<ActionResult> Create([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
         {
             if (ModelState.IsValid)
@@ -68,6 +103,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Tickets/Edit/5
+        [CustomerAuthorisation]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,6 +126,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomerAuthorisation]
         public async Task<ActionResult> Edit([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
         {
             if (ModelState.IsValid)
@@ -105,6 +142,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Tickets/Delete/5
+        [CustomerAuthorisation]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -122,6 +160,7 @@ namespace HelpDeskWeb.Controllers
         // POST: Tickets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomerAuthorisation]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Ticket ticket = await db.Tickets.FindAsync(id);
@@ -138,5 +177,134 @@ namespace HelpDeskWeb.Controllers
             }
             base.Dispose(disposing);
         }
+
+        /*
+            public class TicketsController : BaseController
+            {
+                private IDropDownListPopulator populator;
+                public TicketsController()
+                {
+
+                }
+                public TicketsController(IHelpDeskData data, IDropDownListPopulator populator)
+                    : base(data)
+                {
+                    this.populator = populator;
+                }
+
+                [Authorize]
+                public ActionResult All(int? category)
+                {
+                    return View(category);
+                }
+
+                [Authorize]
+                [HttpPost]
+                public ActionResult ReadTickets([DataSourceRequest] DataSourceRequest request, int? application)
+                {
+                    var ticketsQuery = this.Data.Tickets.All();
+
+                    if ( application != null)
+                    {
+                        ticketsQuery = ticketsQuery.Where(t => t.ApplicationID == application.Value);
+                    }
+
+                    var tickets = ticketsQuery
+                        .Project()
+                        .To<ListTicketViewModel>();
+
+                    return Json(tickets.ToDataSourceResult(request));
+                }
+
+                [Authorize]
+                public ActionResult Add()
+                {
+                    var addTicketViewModel = new AddTicketViewModel
+                    {
+                        Applications = this.populator.GetApplication()
+                    };
+
+                    return View(addTicketViewModel);
+                }
+
+                [Authorize]
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public ActionResult Add(AddTicketViewModel ticket)
+                {
+                    if (ticket != null && ModelState.IsValid)
+                    {
+                        var dbTicket = Mapper.Map<Ticket>(ticket);
+                        dbTicket.Assistant = this.AssistantProfil;
+                        if (ticket.UploadesPieceJointe != null)
+                        {
+                            using (var memory = new MemoryStream())
+                            {
+                                ticket.UploadesPieceJointe.InputStream.CopyTo(memory);
+                                var content = memory.GetBuffer();
+
+                                dbTicket.PieceJointe= new PieceJointe
+                                {
+                                    Content = content,
+                                    Libelle = ticket.UploadesPieceJointe.FileName.Split(new[] { '.' }).Last()
+                                };
+                            }
+                        }
+
+                        this.Data.Tickets.Add(dbTicket);
+                        this.Data.SaveChanges();
+
+                        return RedirectToAction("All", "Tickets");
+                    }
+
+                    ticket.Applications = this.populator.GetApplication();
+
+                    return View(ticket);
+                }
+
+                public ActionResult Details(int id)
+                {
+                    var ticket = this.Data
+                        .Tickets
+                        .All()
+                        .Where(t => t.TicketID == id)
+                        .Project()
+                        .To<TicketDetailsViewModel>()
+                        .FirstOrDefault();
+
+                    if (ticket == null)
+                    {
+                        throw new HttpException(404, "Ticket not found");
+                    }
+
+                    ticket.Commentaires = (ICollection<ViewModels.Commentaires.CommentViewModel>)this.Data
+                        .Commentaires
+                        .All()
+                        .Where(c => c.TicketId == ticket.TicketID)
+                        .OrderByDescending(c => c.CommentaireID)
+                        .Project()
+                        .To<CommentViewModel>()
+                        .ToList();
+
+                    return View(ticket);
+                }
+
+                public ActionResult Image(int id)
+                {
+                    var image = this.Data.PieceJointes.GetById(id);
+                    if (image == null)
+                    {
+                        throw new HttpException(404, "Image not found");
+                    }
+
+                    return File(image.Content, "image/" + image.Libelle);
+                }
+
+                public ActionResult GetApplication()
+                {
+                    return Json(this.populator.GetApplication(), JsonRequestBehavior.AllowGet);
+                }
+            }
+        */
     }
 }

@@ -20,13 +20,9 @@ namespace Metier.Interfaces
 
         IRepository<Ticket> Tickets { get; }
 
-        IRepository<Personne> Personnes { get; }
+        IRepository<Assistant> Assistants { get; }
 
         IRepository<Application> Applications { get; }
-
-
-
-
 
         void Dispose();
 

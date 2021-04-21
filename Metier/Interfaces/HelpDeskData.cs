@@ -1,16 +1,13 @@
-﻿using Metier.Domaine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Type = System.Type;
 
 namespace Metier.Interfaces
 {
-    class HelpDeskData : IHelpDeskData
-
+    public class HelpDeskData : IHelpDeskData
     {
         private readonly DbContext context;
 
@@ -21,6 +18,33 @@ namespace Metier.Interfaces
             this.context = context;
         }
 
+        public DbContext Context => throw new NotImplementedException();
+
+        public IRepository<Domaine.Commentaire> Commentaires
+        {
+            get { return this.GetRepository<Domaine.Commentaire>(); }
+        }
+        public IRepository<Domaine.PieceJointe> PieceJointes
+        {
+            get
+            {
+                return this.GetRepository<Domaine.PieceJointe>();
+            }
+        }
+
+        public IRepository<Domaine.Ticket> Tickets
+             
+            {
+            get { return this.GetRepository<Domaine.Ticket>(); }
+            }
+        public IRepository<Domaine.Assistant> Assistants
+        {
+            get
+            {
+                return this.GetRepository<Domaine.Assistant>();
+            }
+        }
+
         public IRepository<Application> Applications
         {
             get
@@ -28,72 +52,15 @@ namespace Metier.Interfaces
                 return this.GetRepository<Application>();
             }
         }
-        public IRepository<PieceJointe> PieceJointes
-        {
-            get { return this.GetRepository<PieceJointe>(); }
-        }
-
-
-        public IRepository<Ticket> Tickets
-        {
-            get
-            {
-                return this.GetRepository<Ticket>();
-            }
-        }
-
-        public IRepository<Personne> Personnes
-        {
-            get
-            {
-                return this.GetRepository<Personne>();
-            }
-        }
-
-
-
-        public IRepository<Commentaire> Commentaires
-        {
-            get
-            {
-                return this.GetRepository<Commentaire>();
-            }
-        }
-
-        public DbContext Context
-        {
-            get
-            {
-                return this.context;
-            }
-        }
-
-        /// <summary>
-        /// Saves all changes made in this context to the underlying database.
-        /// </summary>
-        /// <returns>
-        /// The number of objects written to the underlying database.
-        /// </returns>
-        /// <exception cref="T:System.InvalidOperationException">Thrown if the context has been disposed.</exception>
-        public int SaveChanges()
-        {
-            return this.context.SaveChanges();
-        }
 
         public void Dispose()
         {
-            this.Dispose(true);
+            throw new NotImplementedException();
         }
 
-        protected virtual void Dispose(bool disposing)
+        public int SaveChanges()
         {
-            if (disposing)
-            {
-                if (this.context != null)
-                {
-                    this.context.Dispose();
-                }
-            }
+            throw new NotImplementedException();
         }
 
         private IRepository<T> GetRepository<T>() where T : class
@@ -107,6 +74,5 @@ namespace Metier.Interfaces
 
             return (IRepository<T>)this.repositories[typeof(T)];
         }
-
     }
 }

@@ -1,5 +1,5 @@
-﻿@using HelpDeskWeb.ViewModels.Commentaires
-
+﻿
+@using HelpDeskWeb.ViewModels.Commentaires
 @model Metier.Domaine.Ticket
 
 @{
@@ -27,6 +27,15 @@
         <dd>
             @Html.DisplayFor(model => model.Assistant.Nom)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PieceJointe.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PieceJointe.Libelle)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Type)
         </dt>
@@ -107,21 +116,21 @@
             @Html.DisplayFor(model => model.Criticite)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Commentaires)
-        </dt>
-
     </dl>
+</div>
+<div class="col-md-4">
+    @if (Model.PieceJointeID != null)
+    {
+        <img src="@Url.Action("PieceJointe", "Tickets", new { id = Model.PieceJointeID.Value })" class="img-responsive" />}
+</div>
 
-    <div class="col-md-4">
-        @if (Model.PieceJointeID != null)
-        {
-            <img src="@Url.Action("PieceJointe", "Tickets", new { id = Model.PieceJointeID.Value })" class="img-responsive" />}
-    </div>
 </div>
 
 @Html.Partial("_PartialCommentaire", new PostCommentViewModel(Model.TicketID))
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.TicketID }) |
-    @Html.ActionLink("Back to List", "Index")
+
+    @Html.ActionLink("Back to List", "Index")|
+
+    @Html.ActionLink("Ajouter un commentaire", "Create", "Commentaires")
 </p>

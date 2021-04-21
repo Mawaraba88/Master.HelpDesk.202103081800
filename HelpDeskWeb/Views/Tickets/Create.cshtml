@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <h4>Ticket</h4>
     <hr />
@@ -111,6 +111,8 @@
         </div>
     </div>
 
+
+
     <div class="row">
         <div class="col-md-2">
             <strong>Image</strong>
@@ -126,6 +128,9 @@
         </div>
     </div>
 </div>
+
+
+
 }
 
 <div>
@@ -135,3 +140,13 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+    
+
+
+
+
+
+
+
+
+

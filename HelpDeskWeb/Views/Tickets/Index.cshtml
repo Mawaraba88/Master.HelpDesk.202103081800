@@ -54,56 +54,52 @@
     </tr>
 
 @foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Applications.Libelle)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Assistant.Nom)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PieceJointe.Libelle)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Type)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Resume)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DateEcheance)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DateCreation)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Priorite)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Resolution)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Statut)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Environnement)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Criticite)
-    </td>
-
-    <td>
-        @Html.DisplayFor(modelItem => item.C)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.TicketID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.TicketID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.TicketID })
-    </td>
-</tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applications.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assistant.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PieceJointe.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resume)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateEcheance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priorite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resolution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Environnement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Criticite)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TicketID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TicketID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TicketID })
+        </td>
+    </tr>
 }
 
 </table>

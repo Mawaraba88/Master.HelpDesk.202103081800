@@ -9,6 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using Metier;
 using Metier.Domaine;
+using Metier.Interfaces;
+using HelpDeskWeb.ViewModels.Commentaires;
+using AutoMapper;
 
 namespace HelpDeskWeb.Controllers
 {
@@ -62,7 +65,7 @@ namespace HelpDeskWeb.Controllers
 
             ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", commentaire.AssistantID);
             ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
-           // return View(commentaire);
+            // return View(commentaire);
 
             return PartialView("_PartialCommentaire");
         }
@@ -138,3 +141,42 @@ namespace HelpDeskWeb.Controllers
         }
     }
 }
+
+
+    /*
+    public class CommentsController : BaseController
+    {
+        public CommentsController(IHelpDeskData data)
+            : base(data)
+        {
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostComment(PostCommentViewModel comment)
+        {
+            if (comment != null && ModelState.IsValid)
+            {
+                var dbComment = Mapper.Map<Commentaire>(comment);
+                dbComment.Assistant = this.AssistantProfil;
+                var ticket = this.Data.Tickets.GetById(comment.TicketID);
+                if (ticket == null)
+                {
+                    throw new HttpException(404, "Ticket not found");
+                }
+
+                ticket.Commentaires.Add(dbComment);
+                this.Data.SaveChanges();
+
+                /* var viewModel = Mapper.Map<CommentViewModel>(dbComment);
+
+                 return PartialView("_CommentPartial", viewModel);
+            }
+
+            throw new HttpException(400, "Invalid comment");
+        }
+
+    }
+}
+*/

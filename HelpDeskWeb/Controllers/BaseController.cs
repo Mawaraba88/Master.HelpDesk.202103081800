@@ -9,22 +9,27 @@ using System.Web.Routing;
 
 namespace HelpDeskWeb.Controllers
 {
+    [HandleError]
     public class BaseController : Controller
     {
+        public BaseController()
+        {
+
+        }
         protected IHelpDeskData Data { get; private set; }
 
-        protected Personne PersonneProfile { get; private set; }
+        protected Assistant AssistantProfil { get; private set; }
 
         public BaseController(IHelpDeskData data)
         {
             this.Data = data;
         }
 
-        protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
+       /* protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
-            this.PersonneProfile = this.Data.Personnes.All().Where(u => u.Nom == requestContext.HttpContext.User.Identity.Name).FirstOrDefault();
+            this.AssistantProfil = Data.Assistants.All().Where(u => u.Nom == requestContext.HttpContext.User.Identity.Name).FirstOrDefault();
 
             return base.BeginExecute(requestContext, callback, state);
-        }
+        }*/
     }
 }

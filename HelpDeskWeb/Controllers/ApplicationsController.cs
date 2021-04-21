@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Metier;
+using System.Web.Security;
+using HelpDeskWeb.Filters;
 
 namespace HelpDeskWeb.Controllers
 {
@@ -22,6 +24,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Applications/Details/5
+        [CustomerAuthorisation(Roles = "Administrateur")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,6 +40,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Applications/Create
+        [CustomerAuthorisation(Roles = "Administrateur")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +51,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomerAuthorisation(Roles = "Administrateur")]
         public async Task<ActionResult> Create([Bind(Include = "ApplicationID,Libelle,Version")] Application application)
         {
             if (ModelState.IsValid)
@@ -60,6 +65,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Applications/Edit/5
+        [CustomerAuthorisation(Roles = "Administrateur")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,6 +85,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomerAuthorisation(Roles = "Administrateur")]
         public async Task<ActionResult> Edit([Bind(Include = "ApplicationID,Libelle,Version")] Application application)
         {
             if (ModelState.IsValid)
@@ -91,6 +98,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Applications/Delete/5
+        [CustomerAuthorisation(Roles = "Administrateur")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,6 +116,7 @@ namespace HelpDeskWeb.Controllers
         // POST: Applications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomerAuthorisation(Roles = "Administrateur")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Application application = await db.Applications.FindAsync(id);

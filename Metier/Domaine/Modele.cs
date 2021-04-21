@@ -19,7 +19,7 @@ namespace Metier.Domaine
 
         #endregion
 
-        public int Encours() { return -1; }
+        //public int Encours() { return -1; }
     }
 
 

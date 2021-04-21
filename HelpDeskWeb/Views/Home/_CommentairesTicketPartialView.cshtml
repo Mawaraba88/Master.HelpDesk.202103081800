@@ -1,0 +1,25 @@
+﻿@model IList<HelpDeskWeb.ViewModels.Home.TicketViewModel>
+
+
+@{ var tickets = 0;}
+@for (int i = 0; i < tickets; i++)
+{
+    <div class="row">
+        @for (int j = 0; j < 3; j++)
+        {
+            var currentTicket = 3 * i + j;
+            if (currentTicket == Model.Count)
+            {
+                break;
+            }
+            <div class="col-md-4">
+                <h2 style="word-wrap: break-word">@Model[currentTicket].TypeTicket</h2>
+               
+                <div>
+                    <strong>Auteur: </strong> @Model[currentTicket].NomAuteur
+                </div>
+                
+                <a href="/Tickets/Details/@Model[currentTicket].TicketID" class="btn btn-default">More Details...</a>
+            </div>}
+    </div>}
+
