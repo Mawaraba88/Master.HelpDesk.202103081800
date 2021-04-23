@@ -60,14 +60,14 @@ namespace HelpDeskWeb.Controllers
             {
                 db.Commentaires.Add(commentaire);
                 await db.SaveChangesAsync();
-                return PartialView("_PartialCommentaire");
+                return View(commentaire);
             }
 
             ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", commentaire.AssistantID);
             ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
-            // return View(commentaire);
+             return View(commentaire);
 
-            return PartialView("_PartialCommentaire");
+            //return PartialView("_PartialCommentaire");
         }
 
         // GET: Commentaires/Edit/5

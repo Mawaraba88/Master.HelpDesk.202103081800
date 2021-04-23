@@ -4,15 +4,32 @@
     ViewBag.Title = "Index";
 }
 
+
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+
+@using (Html.BeginForm())
+{
+    <p>
+        Selectionner une Application: @Html.DropDownList("SelectedApplication", "All")
+        <input type="submit" value="Filtrer" />
+    </p>
+}
+
+
+
+<table class="table table-dark table-striped">
     <tr>
+        <!--
         <th>
             @Html.DisplayNameFor(model => model.Applications.Libelle)
+        </th>
+            -->
+        <th>
+            Application
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Assistant.Nom)
@@ -26,12 +43,26 @@
         <th>
             @Html.DisplayNameFor(model => model.Resume)
         </th>
+
+
+        <!--
         <th>
             @Html.DisplayNameFor(model => model.DateEcheance)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateCreation)
         </th>
+
+
+            -->
+        <!--Tri par date-->
+        <th>
+            @Html.ActionLink(" Date de Création", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink(" Date d'échéance", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
@@ -53,53 +84,54 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Applications.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Assistant.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PieceJointe.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Resume)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateEcheance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Priorite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Resolution)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Statut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Environnement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Criticite)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TicketID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TicketID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TicketID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applications.Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assistant.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PieceJointe.Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEcheance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priorite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resolution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Statut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Environnement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Criticite)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TicketID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TicketID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TicketID })
+            </td>
+        </tr>
+    }
 
 </table>

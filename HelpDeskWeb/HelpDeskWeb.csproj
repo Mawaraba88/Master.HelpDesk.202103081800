@@ -174,6 +174,7 @@
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Filters\CustomerAuthorisationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3036,6 +3037,11 @@
     <Content Include="Scripts\Kendo\styles\kendo.silver.mobile.min.css.map" />
     <Content Include="Scripts\Kendo\styles\kendo.uniform.min.css.map" />
     <Content Include="Scripts\Kendo\styles\kendo.uniform.mobile.min.css.map" />
+    <Content Include="Views\Utilisateurs\Create.cshtml" />
+    <Content Include="Views\Utilisateurs\Delete.cshtml" />
+    <Content Include="Views\Utilisateurs\Details.cshtml" />
+    <Content Include="Views\Utilisateurs\Edit.cshtml" />
+    <Content Include="Views\Utilisateurs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

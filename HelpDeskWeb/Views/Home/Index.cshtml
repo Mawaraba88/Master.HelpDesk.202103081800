@@ -1,8 +1,50 @@
-﻿
+﻿@model IList<HelpDeskWeb.ViewModels.Home.TicketViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
 @Html.Action("CommentairesTickets")
+
+
+<h2>Tickets et date d'échéance</h2>
+
+
+
+
+<table class="table table-dark table-striped">
+    <tr>
+        <th>
+            Date d'échéance des tickets
+        </th>
+        <th>
+            Nombre de ticket Tickets
+        </th>
+        <th> </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEcheance)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketCount)
+              
+               
+            </td>
+            <td>
+                @Html.ActionLink("Detail", "Details", "Home", new { id = item.TicketID })
+            </td>
+
+
+        </tr>
+    }
+</table>
+
+
 <!--
 <div class="jumbotron">
     <h1>ASP.NET</h1>

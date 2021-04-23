@@ -22,8 +22,16 @@ namespace Metier.Domaine
         public Type Type { get; set; }
       
         public string Resume { get; set; }
-        public DateTime? DateEcheance { get; set; }
-        public DateTime? DateCreation { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date d'échéance")]
+        public DateTime DateEcheance { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date de création")]
+        public DateTime DateCreation { get; set; }
         
         [Required]
         [StringLength(1000, MinimumLength = 20)]
@@ -85,8 +93,8 @@ namespace Metier.Domaine
 
             this.historiques = new HashSet<Historique>();
 
-            DateCreation = DateTime.Now;
-            DateEcheance = DateTime.Now;
+            //DateCreation = DateTime.Now;
+            //DateEcheance = DateTime.Now;
 
 
             //  ctrl+v = coller circulaire        public List<PieceJointe> PieceJointes { get; set; }

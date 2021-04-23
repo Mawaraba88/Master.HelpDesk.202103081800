@@ -15,6 +15,7 @@
     @RenderSection("styles", required: false)
 </head>
 <body>
+
     <!--<div class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
               <div class="navbar-header">
@@ -54,8 +55,8 @@
               </div>
           </div>
       </div>
-    -->
-
+    
+-->
 
     <div class="navbar navbar-inverse navbar-fixed-top">
 
@@ -77,28 +78,22 @@
                             @Html.ActionLink("Liste des Tickets", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
 
                         </li>
-                        <li class="nav-item ">
-                            @Html.ActionLink("Ajout Tickets", "Create", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
 
-                        </li>
-                        if (User.IsInRole( "Admin ") || true)
+                        if (User.IsInRole("Admin ") || true)
                         {
-
-                            <li class="nav-item dropdown">
+                            
+                            <li class="nav-item active dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Configurations
                                 </a>
+
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @Html.ActionLink("Categories", "Index", "Categories", new { area = "Configuration" }, null)
-                                    <div class="dropdown-divider"></div>
+
                                     @Html.ActionLink("Applications", "Index", "Applications", new { area = "Configuration" }, null)
-                                    <div class="dropdown-divider"></div>
-                                    @Html.ActionLink("Profils", "Index", "Profils", new { area = "Configuration" }, null)
-                                    <div class="dropdown-divider"></div>
-                                    @Html.ActionLink("Utilisateurs", "Index", "Utilisateurs", new { area = "Configurations" }, null)
-                                    <div class="dropdown-divider"></div>
+
+                                    <hr class="dropdown-divider">
                                     @Html.ActionLink("Roles", "Index", "Roles", new { area = "Configuration" }, null)
-                                    <div class="dropdown-divider"></div>
+                                    <hr class="dropdown-divider">
                                     @Html.ActionLink("Assistants", "Index", "Assistants", new { area = "Configuration" }, null)
 
                                 </div>
@@ -116,6 +111,8 @@
             </div>
         </div>
     </div>
+        
+   
 
     <div class="container body-content">
         @RenderBody()

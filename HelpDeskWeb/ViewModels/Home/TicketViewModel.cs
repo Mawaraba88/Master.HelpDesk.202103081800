@@ -15,6 +15,7 @@ namespace HelpDeskWeb.ViewModels.Home
     using Metier.Interfaces;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web;
     public class TicketViewModel : IDomaine<Ticket>, IHaveCustomMapping
@@ -23,11 +24,16 @@ namespace HelpDeskWeb.ViewModels.Home
 
         public string TypeTicket { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime? DateEcheance { get; set; }
+
         public string Auteur { get; set; }
 
         public string NomAuteur { get; set; }
+        public int TicketCount { get; set; }
 
-        public int NombreDeCommentaire { get; set; }
+        public int CommentaireCount { get; set; }
+        public List<Commentaire> Commentaire { get; set; }
 
         void IHaveCustomMapping.CreateMappings(IConfiguration configuration)
         {
@@ -35,7 +41,7 @@ namespace HelpDeskWeb.ViewModels.Home
                  .ForMember(m => m.TypeTicket, opt => opt.MapFrom(t => t.Type))
                 
                  .ForMember(m => m.NomAuteur, opt => opt.MapFrom(t => t.Assistant.Email))
-                 .ForMember(m => m.NombreDeCommentaire, opt => opt.MapFrom(t => t.Commentaires.Count()))
+                 .ForMember(m => m.CommentaireCount, opt => opt.MapFrom(t => t.Commentaires.Count()))
                  .ReverseMap();
         }
     }

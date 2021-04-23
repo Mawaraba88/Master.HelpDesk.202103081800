@@ -50,12 +50,90 @@ namespace HelpDeskWeb.Controllers
         private ModeleHelpDesk db = new ModeleHelpDesk();
 
         // GET: Tickets
-        public async Task<ActionResult> Index()
+        /*public async Task<ActionResult> Index()
         {
             var tickets = db.Tickets.Include(t => t.Applications).Include(t => t.Assistant).Include(t => t.PieceJointe);
             return View(await tickets.ToListAsync());
-        }
+        }*/
 
+        public async Task<ActionResult> Index(String sortOrder, int? SelectedApplication, int? SelectedPriorite)
+        {
+
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.CurrentFilter = SelectedApplication;
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var ticketsData = (from t in db.Tickets
+                               select t).ToList();
+            var ticket = from t in ticketsData
+                         select t;
+
+            if (SelectedApplication != 0)
+            {
+                ticket = ticket.Where(t => t.Applications.Equals(SelectedApplication));
+
+            }
+
+            if (SelectedPriorite != 0)
+            {
+                ticket = ticket.Where(t => t.Priorite.Equals(SelectedPriorite));
+
+            }
+            var applications = db.Applications.OrderBy(q => q.Libelle).ToList();
+            ViewBag.SelectedApplication = new SelectList(applications, "ApplicationID", "Libelle", SelectedApplication);
+            int applicationID = SelectedApplication.GetValueOrDefault();
+
+            IQueryable<Ticket> tickets = db.Tickets
+                .Where(c => !SelectedApplication.HasValue || c.ApplicationID == applicationID)
+                .OrderBy(d => d.TicketID)
+                .Include(d => d.Applications);
+            var sql = tickets.ToString();
+
+            /*var UniqueApplication = from t in tickets
+                                    group t by t.Applications into newGroup
+                                    where newGroup.Key != null
+                                    orderby newGroup.Key
+                                    select new { Applications = newGroup.Key };
+
+            ViewBag.UniqueApplication = UniqueApplication.Select(m => new SelectList{ Value = m.Applications,
+                Text = m.Applications }).ToList();*/
+
+
+
+
+
+            /*var applications = db.Applications.OrderBy(q => q.Libelle).ToList();
+            ViewBag.SelectedApplication = new SelectList(applications, "ApplicationID", "Libelle", SelectedApplication);
+            int applicationID = SelectedApplication.GetValueOrDefault();
+
+
+            IQueryable<Ticket> tickets = db.Tickets
+                .Where(c => !SelectedApplication.HasValue || c.ApplicationID == applicationID)
+                .OrderBy(d => d.TicketID)
+                .Include(d => d.Applications);
+            var sql = tickets.ToString();*/
+
+
+            switch (sortOrder)
+            {
+                case "Date":
+                    tickets = tickets.OrderBy(t => t.DateCreation);
+                    tickets = tickets.OrderBy(t => t.DateEcheance);
+                    break;
+                case "Date_desc":
+                    tickets = tickets.OrderByDescending(t => t.DateCreation);
+                    tickets = tickets.OrderByDescending(t => t.DateEcheance);
+                    break;
+                default:
+                    tickets = tickets.OrderBy(t => t.DateCreation);
+                    break;
+            }
+
+            return View(await tickets.ToListAsync());
+
+
+
+        }
         // GET: Tickets/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -87,14 +165,39 @@ namespace HelpDeskWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomerAuthorisation]
-        public async Task<ActionResult> Create([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
+        /* public async Task<ActionResult> Create([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
+         {
+             if (ModelState.IsValid)
+             {
+                 db.Tickets.Add(ticket);
+                 await db.SaveChangesAsync();
+                 return RedirectToAction("Index");
+             }
+
+             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
+             ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
+             ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "PieceJointeID", "Libelle", ticket.PieceJointeID);
+             return View(ticket);
+         }
+        */
+
+        public async Task<ActionResult> Create([Bind(Include = "Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Tickets.Add(ticket);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Tickets.Add(ticket);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+
 
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
             ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
@@ -127,7 +230,7 @@ namespace HelpDeskWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomerAuthorisation]
-        public async Task<ActionResult> Edit([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
+        /*public async Task<ActionResult> Edit([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -140,7 +243,23 @@ namespace HelpDeskWeb.Controllers
             ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "PieceJointeID", "Libelle", ticket.PieceJointeID);
             return View(ticket);
         }
+        */
 
+        public async Task<ActionResult> Edit([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(ticket).State = EntityState.Modified;
+               
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                
+            }
+            ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", ticket.AssistantID);
+            ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "PieceJointeID", "Libelle", ticket.PieceJointeID);
+            return View(ticket);
+        }
         // GET: Tickets/Delete/5
         [CustomerAuthorisation]
         public async Task<ActionResult> Delete(int? id)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Metier.Domaine
 {
-    public class Assistant:Personne
+    public class Assistant : Personne
     {
         /// <summary>
         /// Identifiant de l'assistant

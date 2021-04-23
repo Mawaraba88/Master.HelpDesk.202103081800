@@ -54,10 +54,7 @@ namespace Metier
             return new ModeleHelpDesk();
         }
 
-
-
-        
-
+        public System.Data.Entity.DbSet<Metier.Domaine.Utilisateur> Utilisateurs { get; set; }
     }
 
 

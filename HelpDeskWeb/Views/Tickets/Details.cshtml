@@ -116,7 +116,27 @@
             @Html.DisplayFor(model => model.Criticite)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaires)
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Commentaires)
+            {
+
+
+                @Html.DisplayFor(modelItem => item.Contenu)
+
+
+                @Html.DisplayFor(modelItem => item.Assistant)
+
+
+            }
+        </dd>
+
     </dl>
+
+
 </div>
 <div class="col-md-4">
     @if (Model.PieceJointeID != null)
@@ -125,12 +145,18 @@
 </div>
 
 </div>
-
+@if (User.Identity.IsAuthenticated)
+{   
+<div>
+    @Html.ActionLink("Ajouter un commentaire", "Create", "Commentaires")
+</div>
+  
+}
 @Html.Partial("_PartialCommentaire", new PostCommentViewModel(Model.TicketID))
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.TicketID }) |
 
     @Html.ActionLink("Back to List", "Index")|
 
-    @Html.ActionLink("Ajouter un commentaire", "Create", "Commentaires")
+
 </p>

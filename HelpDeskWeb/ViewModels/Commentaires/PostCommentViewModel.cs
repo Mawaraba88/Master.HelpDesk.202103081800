@@ -27,6 +27,8 @@ namespace HelpDeskWeb.ViewModels.Commentaires
     [UIHint("MultiLineText")]
     public string Contenu { get; set; }
 
+    public int CommentaireCount { get; set; }
+
 
 
     }

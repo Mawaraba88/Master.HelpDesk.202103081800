@@ -11,9 +11,10 @@ namespace HelpDeskWeb.ViewModels.Ticket
 
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web;
-    public class ListTicketViewModel : IDomaine<Ticket>, IHaveCustomMapping
+    public class ListTicketViewModel /*: IDomaine<Ticket>, IHaveCustomMapping*/
     {
 
         public String Priorite { get; set; }
@@ -28,7 +29,8 @@ namespace HelpDeskWeb.ViewModels.Ticket
        
         public String Statut { get; set; }
 
-    
+        [DataType(DataType.Date)]
+        public DateTime? DateEcheance { get; set; }
         public string Resume { get; set; }
 
        
@@ -38,7 +40,9 @@ namespace HelpDeskWeb.ViewModels.Ticket
 
         public String Application { get; set; }
 
-        public void CreateMappings(IConfiguration configuration)
+        public int TicketCount { get; set; }
+
+        /*public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Ticket, ListTicketViewModel>()
                 .ForMember(m => m.TypeTicket, opt => opt.MapFrom(t => t.Type))
@@ -53,8 +57,7 @@ namespace HelpDeskWeb.ViewModels.Ticket
                 .ForMember(m => m.Description, opt => opt.MapFrom(t => t.Description.ToString()))
 
 
-                .ReverseMap();
+                .ReverseMap();*/
         }
 
     }
-}

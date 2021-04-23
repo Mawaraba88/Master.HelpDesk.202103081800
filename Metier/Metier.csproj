@@ -111,6 +111,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domaine\Admin.cs" />
     <Compile Include="Domaine\Application.cs" />
     <Compile Include="Domaine\Assistant.cs" />
     <Compile Include="Domaine\Historique.cs" />
@@ -145,6 +146,10 @@
     <Compile Include="Migrations\202104200258182_5.Designer.cs">
       <DependentUpon>202104200258182_5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104211947460_6.cs" />
+    <Compile Include="Migrations\202104211947460_6.Designer.cs">
+      <DependentUpon>202104211947460_6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeleHelpDesk.cs" />
     <Compile Include="Service.cs" />
@@ -177,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104200258182_5.resx">
       <DependentUpon>202104200258182_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104211947460_6.resx">
+      <DependentUpon>202104211947460_6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
