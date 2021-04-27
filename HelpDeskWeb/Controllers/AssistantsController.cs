@@ -19,8 +19,8 @@ namespace HelpDeskWeb.Controllers
         // GET: Assistants
         public async Task<ActionResult> Index()
         {
-            var personnes = db.Assistants.Include(a => a.Role);
-            return View(await personnes.ToListAsync());
+            var assistants = db.Assistants.Include(a => a.Role);
+            return View(await assistants.ToListAsync());
         }
 
         // GET: Assistants/Details/5

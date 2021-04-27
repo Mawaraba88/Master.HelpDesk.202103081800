@@ -16,11 +16,12 @@ namespace HelpDeskWeb.ViewModels.Commentaires
 
         public string Contenu { get; set; }
 
-        public void CreateMappings(IConfiguration configuration)
+
+        /*public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Commentaire, CommentViewModel>()
                 .ForMember(c => c.NomAssistant, opt => opt.MapFrom(c => c.Assistant));
-        }
+        }*/
 
 
     }

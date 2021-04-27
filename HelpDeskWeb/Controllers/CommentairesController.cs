@@ -44,7 +44,7 @@ namespace HelpDeskWeb.Controllers
         // GET: Commentaires/Create
         public ActionResult Create()
         {
-            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom");
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "FullName");
             ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume");
             return View();
         }
@@ -63,7 +63,7 @@ namespace HelpDeskWeb.Controllers
                 return View(commentaire);
             }
 
-            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", commentaire.AssistantID);
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "FullName", commentaire.AssistantID);
             ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
              return View(commentaire);
 
@@ -101,7 +101,7 @@ namespace HelpDeskWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom", commentaire.AssistantID);
-            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
+            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "TicketId", commentaire.TicketId);
             return View(commentaire);
         }
 

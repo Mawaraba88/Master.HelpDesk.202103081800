@@ -119,7 +119,9 @@
         <dt>
             @Html.DisplayNameFor(model => model.Commentaires)
         </dt>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Assistant)
+        </dt>
         <dd>
             @foreach (var item in Model.Commentaires)
             {
@@ -128,7 +130,7 @@
                 @Html.DisplayFor(modelItem => item.Contenu)
 
 
-                @Html.DisplayFor(modelItem => item.Assistant)
+                @Html.DisplayFor(modelItem => item.Assistant.Nom)
 
 
             }

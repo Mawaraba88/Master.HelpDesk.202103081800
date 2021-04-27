@@ -16,6 +16,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IHM.Web", "IHM.Web", "{33FBEF0E-8EAC-465B-BF97-BCED7D88835C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Métier", "Métier", "{F23601E3-98D0-48D1-A11E-78A5F6D3EC98}"
+	ProjectSection(SolutionItems) = preProject
+		Metier\Domaine\Application.cs = Metier\Domaine\Application.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8455BCAD-9C88-4F74-BC4C-DBFE92E98200}"
 EndProject

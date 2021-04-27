@@ -32,7 +32,7 @@ namespace Metier.Domaine
         public string Contenu { get; set; }
 
         public virtual Assistant Assistant {get; set; }
-        public int AssistantID { get; set; }
+        public Nullable<int> AssistantID { get; set; }
 
         /*public virtual Utilisateur Utilisateur { get; set; }
 

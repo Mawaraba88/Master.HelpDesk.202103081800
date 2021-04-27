@@ -19,20 +19,37 @@
     </p>
 }
 
+@using (Html.BeginForm())
+{
+    <p>
+        Selectionner un Assistant: @Html.DropDownList("SelectedAssistant", "All")
+        <input type="submit" value="Filtrer" />
+    </p>
+}
 
 
 <table class="table table-dark table-striped">
     <tr>
+
+
         <!--
+    <th>
         <th>
-            @Html.DisplayNameFor(model => model.Applications.Libelle)
+        @Html.DisplayNameFor(model => model.Applications.Libelle)
+    </th>
+        Application
+             <th>
+            @Html.DisplayNameFor(model => model.Assistant.Nom)
         </th>
-            -->
+
+    </th>
+         -->
         <th>
             Application
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.Assistant.Nom)
+            Assistant
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PieceJointe.Libelle)
@@ -46,15 +63,15 @@
 
 
         <!--
-        <th>
-            @Html.DisplayNameFor(model => model.DateEcheance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreation)
-        </th>
+    <th>
+        @Html.DisplayNameFor(model => model.DateEcheance)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.DateCreation)
+    </th>
 
 
-            -->
+        -->
         <!--Tri par date-->
         <th>
             @Html.ActionLink(" Date de Création", "Index", new { sortOrder = ViewBag.DateSortParm })

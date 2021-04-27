@@ -56,12 +56,13 @@ namespace HelpDeskWeb.Controllers
             return View(await tickets.ToListAsync());
         }*/
 
-        public async Task<ActionResult> Index(String sortOrder, int? SelectedApplication, int? SelectedPriorite)
+        public async Task<ActionResult> Index(String sortOrder, int? SelectedApplication, int? SelectedAssistant)
         {
 
             ViewBag.CurrentSort = sortOrder;
 
             ViewBag.CurrentFilter = SelectedApplication;
+            ViewBag.CurrentFilter = SelectedAssistant;
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var ticketsData = (from t in db.Tickets
                                select t).ToList();
@@ -74,44 +75,25 @@ namespace HelpDeskWeb.Controllers
 
             }
 
-            if (SelectedPriorite != 0)
+            if (SelectedAssistant != 0)
             {
-                ticket = ticket.Where(t => t.Priorite.Equals(SelectedPriorite));
+                ticket = ticket.Where(t => t.Assistant.Equals(SelectedAssistant));
 
             }
             var applications = db.Applications.OrderBy(q => q.Libelle).ToList();
             ViewBag.SelectedApplication = new SelectList(applications, "ApplicationID", "Libelle", SelectedApplication);
             int applicationID = SelectedApplication.GetValueOrDefault();
 
+            var assistants = db.Personnes.OrderBy(a => a.Nom).ToList();
+            ViewBag.SelectedAssistant = new SelectList(assistants, "ID", "Nom", SelectedAssistant);
+            int assistantID = SelectedAssistant.GetValueOrDefault();
             IQueryable<Ticket> tickets = db.Tickets
-                .Where(c => !SelectedApplication.HasValue || c.ApplicationID == applicationID)
+                .Where(c => !SelectedApplication.HasValue || c.ApplicationID == applicationID 
+                &&  !SelectedAssistant.HasValue || c.AssistantID == assistantID )
                 .OrderBy(d => d.TicketID)
-                .Include(d => d.Applications);
+                .Include(d => d.Applications)
+                .Include(d => d.Assistant);
             var sql = tickets.ToString();
-
-            /*var UniqueApplication = from t in tickets
-                                    group t by t.Applications into newGroup
-                                    where newGroup.Key != null
-                                    orderby newGroup.Key
-                                    select new { Applications = newGroup.Key };
-
-            ViewBag.UniqueApplication = UniqueApplication.Select(m => new SelectList{ Value = m.Applications,
-                Text = m.Applications }).ToList();*/
-
-
-
-
-
-            /*var applications = db.Applications.OrderBy(q => q.Libelle).ToList();
-            ViewBag.SelectedApplication = new SelectList(applications, "ApplicationID", "Libelle", SelectedApplication);
-            int applicationID = SelectedApplication.GetValueOrDefault();
-
-
-            IQueryable<Ticket> tickets = db.Tickets
-                .Where(c => !SelectedApplication.HasValue || c.ApplicationID == applicationID)
-                .OrderBy(d => d.TicketID)
-                .Include(d => d.Applications);
-            var sql = tickets.ToString();*/
 
 
             switch (sortOrder)

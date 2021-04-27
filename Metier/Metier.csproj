@@ -150,6 +150,14 @@
     <Compile Include="Migrations\202104211947460_6.Designer.cs">
       <DependentUpon>202104211947460_6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104231058005_8.cs" />
+    <Compile Include="Migrations\202104231058005_8.Designer.cs">
+      <DependentUpon>202104231058005_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104231216352_9.cs" />
+    <Compile Include="Migrations\202104231216352_9.Designer.cs">
+      <DependentUpon>202104231216352_9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeleHelpDesk.cs" />
     <Compile Include="Service.cs" />
@@ -185,6 +193,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104211947460_6.resx">
       <DependentUpon>202104211947460_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104231058005_8.resx">
+      <DependentUpon>202104231058005_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104231216352_9.resx">
+      <DependentUpon>202104231216352_9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
