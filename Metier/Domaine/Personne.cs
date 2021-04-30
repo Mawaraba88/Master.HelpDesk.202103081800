@@ -36,6 +36,7 @@ namespace Metier.Domaine
             set { this.commentaires = value; }
         }
 
+        public virtual List<Role> Roles { get; set; }
 
     }
 }

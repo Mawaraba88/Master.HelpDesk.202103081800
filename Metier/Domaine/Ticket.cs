@@ -49,8 +49,8 @@ namespace Metier.Domaine
         public Application Applications { get; set; }
         public int ApplicationID { get; set; }
 
-        public Nullable<int> AssistantID { get; set; }
-        public virtual Assistant Assistant { get; set; }
+       /* public Nullable<int> AssistantID { get; set; }
+        public virtual Assistant Assistant { get; set; }*/
 
 
         [DefaultValue(Priorite.Bas)]

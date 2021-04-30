@@ -9,31 +9,31 @@
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Logins", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-        @Html.AntiForgeryToken()
-                        <h4>Use a local account to log in.</h4>
-                                        <hr />
-                                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                                        <div class="form-group">
-                                                                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                                                                            <div class="col-md-10">
-                                                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                                                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                                                            </div>
-                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            @Html.LabelFor(m => m.MotDePasse, new { @class = "col-md-2 control-label" })
-                                                                                            <div class="col-md-10">
-                                                                                                @Html.PasswordFor(m => m.MotDePasse, new { @class = "form-control" })
-                                                                                                @Html.ValidationMessageFor(m => m.MotDePasse, "", new { @class = "text-danger" })
-                                                                                            </div>
-                                                                                        </div>
-                                                                                                        <div class="form-group">
-                                                                                                            <div class="col-md-offset-2 col-md-10">
-                                                                                                                <input type="submit" value="Log in" class="btn btn-default" />
-                                                                                                            </div>
-                                                                                                        </div>            }
+                @Html.AntiForgeryToken()
+                <h4>Use a local account to log in.</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MotDePasse, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.MotDePasse, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.MotDePasse, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                </div>}
         </section>
-   </div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

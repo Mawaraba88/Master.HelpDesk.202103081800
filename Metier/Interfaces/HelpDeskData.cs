@@ -37,11 +37,11 @@ namespace Metier.Interfaces
             {
             get { return this.GetRepository<Domaine.Ticket>(); }
             }
-        public IRepository<Domaine.Assistant> Assistants
+        public IRepository<Domaine.Personne> Personnes
         {
             get
             {
-                return this.GetRepository<Domaine.Assistant>();
+                return this.GetRepository<Domaine.Personne>();
             }
         }
 
