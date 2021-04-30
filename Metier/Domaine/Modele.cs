@@ -15,7 +15,8 @@ namespace Metier.Domaine
 
         #region Propriétés
         public int RoleID { get; set; }
-        public string Libelle { get; set; }
+        public string Titre { get; set; }
+        public virtual List<Personne> Personnes { get; set; }
 
         #endregion
 
@@ -31,12 +32,16 @@ namespace Metier.Domaine
         [UIHint("MultiLineText")]
         public string Contenu { get; set; }
 
-        public virtual Assistant Assistant {get; set; }
-        public int AssistantID { get; set; }
+       /* public virtual Assistant Assistant {get; set; }
+        public int AssistantID { get; set; }*/
 
         /*public virtual Utilisateur Utilisateur { get; set; }
 
         public int UtilisateurID { get; set; }*/
+        public string AuteurId { get; set; }
+        public virtual Personne Auteur { get; set; }
+
+
         public int TicketId { get; set; }
         public virtual Ticket Ticket { get; set; }
 

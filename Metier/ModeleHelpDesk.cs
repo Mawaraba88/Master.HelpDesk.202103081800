@@ -26,7 +26,7 @@ namespace Metier
 
          public virtual DbSet<Application> Applications { get; set; }
         //public  DbSet<Utilisateur> Utilisateurs { get; set; }
-        public DbSet<Assistant> Assistants { get; set; }  
+        
         public virtual DbSet<Commentaire> Commentaires { get; set; }
        
        
@@ -40,7 +40,7 @@ namespace Metier
 
         public virtual DbSet<Role> Roles { get; set; }
 
-        public virtual DbSet<Profil> Profils { get; set; }
+      
 
         public virtual DbSet<Ticket> Tickets { get; set; }
         //public virtual DbSet<Environnement> Environnements { get; set; }

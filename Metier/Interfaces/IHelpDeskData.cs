@@ -20,7 +20,7 @@ namespace Metier.Interfaces
 
         IRepository<Ticket> Tickets { get; }
 
-        IRepository<Assistant> Assistants { get; }
+        IRepository<Personne> Personnes { get; }
 
         IRepository<Application> Applications { get; }
 

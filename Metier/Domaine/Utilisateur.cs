@@ -10,8 +10,7 @@ namespace Metier.Domaine
     {
         //public int UtilisateurID { get; set; }
 
-       public  Profil Profil { get; set; }
-        public int ProfilID { get; set; }
+    
 
         //public virtual ICollection<Ticket> Tickets { get; set; }
     }

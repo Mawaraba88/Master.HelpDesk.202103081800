@@ -30,7 +30,7 @@ namespace Metier.Services
         }
     }
 
-    public class ServiceHelpDesk
+   /* public class ServiceHelpDesk
     {
         private Liste<Profil> profils = new Liste<Profil>();
         public Liste<Profil> Profils { get { return profils; } }
@@ -59,7 +59,7 @@ namespace Metier.Services
             
 
         }
-    }
+    }*/
 
 
 }

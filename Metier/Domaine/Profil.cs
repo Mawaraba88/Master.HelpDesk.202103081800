@@ -11,7 +11,7 @@ namespace Metier.Domaine
     /// <summary>
     /// Gestion des profils utilisateurs
     /// </summary>
-   public class Profil
+   /*public class Profil
     {
         public int ProfilID { get; set; } 
         public string Libelle { get; set; }
@@ -25,8 +25,8 @@ namespace Metier.Domaine
          public Profil()
          {
 
-         }*/
-    }
+         }
+    }*/
 
 
 }

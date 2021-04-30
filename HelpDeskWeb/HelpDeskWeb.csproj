@@ -166,13 +166,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApplicationsController.cs" />
-    <Compile Include="Controllers\AssistantsController.cs" />
     <Compile Include="Controllers\AuthorisationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentairesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Filters\CustomerAuthorisationAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -3036,6 +3034,11 @@
     <Content Include="Scripts\Kendo\styles\kendo.silver.mobile.min.css.map" />
     <Content Include="Scripts\Kendo\styles\kendo.uniform.min.css.map" />
     <Content Include="Scripts\Kendo\styles\kendo.uniform.mobile.min.css.map" />
+    <Content Include="Views\Profils\Create.cshtml" />
+    <Content Include="Views\Profils\Delete.cshtml" />
+    <Content Include="Views\Profils\Details.cshtml" />
+    <Content Include="Views\Profils\Edit.cshtml" />
+    <Content Include="Views\Profils\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

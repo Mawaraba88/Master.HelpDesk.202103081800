@@ -13,8 +13,11 @@ namespace Metier.Domaine
         public DateTime DateCreation { get; set; }
         public string Libelle { get; set; }
 
-        public Nullable<int> AssistantID { get; set; }
-        public virtual Assistant Assistant { get; set; }
+        /*public Nullable<int> AssistantID { get; set; }
+        public virtual Assistant Assistant { get; set; }*/
+
+        public string AuteurId { get; set; }
+        public virtual Personne Auteur { get; set; }
 
         [DefaultValue(Priorite.Bas)]
         public Priorite Priorite { get; set; }
