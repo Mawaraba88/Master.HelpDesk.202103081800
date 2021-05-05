@@ -21,11 +21,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Assistant.Nom)
+            @Html.DisplayNameFor(model => model.Assistant.FullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Assistant.Nom)
+            @Html.DisplayFor(model => model.Assistant.FullName)
         </dd>
 
         <dt>
@@ -116,27 +116,28 @@
             @Html.DisplayFor(model => model.Criticite)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Commentaires)
-        </dt>
-        <dt>
-            @Html.DisplayNameFor(model => model.Assistant)
-        </dt>
         <dd>
             @foreach (var item in Model.Commentaires)
             {
 
-
+            <dt>
+                @Html.DisplayNameFor(model => model.Commentaires)
+            </dt>
+            <dd>
                 @Html.DisplayFor(modelItem => item.Contenu)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Assistant)
+            </dt>
 
+            <dd>
+                @Html.DisplayFor(modelItem => item.Assistant.FullName)
+            </dd>
 
-                @Html.DisplayFor(modelItem => item.Assistant.Nom)
+        }
+            </dd>
 
-
-            }
-        </dd>
-
-    </dl>
+        </dl>
 
 
 </div>

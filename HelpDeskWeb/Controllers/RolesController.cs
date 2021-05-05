@@ -18,14 +18,14 @@ namespace HelpDeskWeb.Controllers
         private ModeleHelpDesk db = new ModeleHelpDesk();
 
         // GET: Roles
-        [CustomerAuthorisation]
+        //[CustomerAuthorisation]
         public async Task<ActionResult> Index()
         {
             return View(await db.Roles.ToListAsync());
         }
 
         // GET: Roles/Details/5
-        [CustomerAuthorisation]
+       // [CustomerAuthorisation]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,7 +41,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Roles/Create
-        [CustomerAuthorisation]
+       // [CustomerAuthorisation]
         public ActionResult Create()
         {
             return View();
@@ -52,7 +52,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomerAuthorisation]
+       // [CustomerAuthorisation]
         public async Task<ActionResult> Create([Bind(Include = "RoleID,Libelle")] Role role)
         {
             if (ModelState.IsValid)
@@ -66,7 +66,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Roles/Edit/5
-        [CustomerAuthorisation]
+        //[CustomerAuthorisation]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +86,7 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomerAuthorisation]
+       // [CustomerAuthorisation]
         public async Task<ActionResult> Edit([Bind(Include = "RoleID,Libelle")] Role role)
         {
             if (ModelState.IsValid)
@@ -99,7 +99,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Roles/Delete/5
-        [CustomerAuthorisation]
+        //[CustomerAuthorisation]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -117,7 +117,7 @@ namespace HelpDeskWeb.Controllers
         // POST: Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [CustomerAuthorisation]
+       // [CustomerAuthorisation]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Role role = await db.Roles.FindAsync(id);

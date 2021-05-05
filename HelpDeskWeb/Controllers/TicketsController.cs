@@ -135,9 +135,9 @@ namespace HelpDeskWeb.Controllers
         [CustomerAuthorisation]
         public ActionResult Create()
         {
-            ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle");
+            ViewBag.ApplicationID = new SelectList(db.Applications, "Libelle", "Libelle");
             ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "Nom");
-            ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "PieceJointeID", "Libelle");
+            ViewBag.PieceJointeID = new SelectList(db.PieceJointes, "Libelle", "Libelle");
             return View();
         }
 
@@ -163,22 +163,17 @@ namespace HelpDeskWeb.Controllers
          }
         */
 
-        public async Task<ActionResult> Create([Bind(Include = "Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
+        public async Task<ActionResult> Create([Bind(Include = "TicketID,Type,Resume,DateEcheance,DateCreation,Description,ApplicationID,AssistantID,Priorite,Resolution,Statut,Environnement,Criticite,PieceJointeID")] Ticket ticket)
         {
-            try
-            {
+           
+
                 if (ModelState.IsValid)
                 {
                     db.Tickets.Add(ticket);
                     await db.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
-            }
-            catch (DataException /* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }
+          
 
 
             ViewBag.ApplicationID = new SelectList(db.Applications, "ApplicationID", "Libelle", ticket.ApplicationID);

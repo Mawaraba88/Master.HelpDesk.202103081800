@@ -22,8 +22,8 @@ namespace Metier.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Nom = c.String(),
-                        Prenom = c.String(),
+                        Nom = c.String(nullable: false, maxLength: 50),
+                        Prenom = c.String(nullable: false, maxLength: 50),
                         Email = c.String(),
                         MotDePasse = c.String(),
                         Service = c.String(),
@@ -43,12 +43,12 @@ namespace Metier.Migrations
                     {
                         CommentaireID = c.Int(nullable: false, identity: true),
                         Contenu = c.String(nullable: false, maxLength: 1000),
-                        AssistantID = c.Int(nullable: false),
+                        AssistantID = c.Int(),
                         TicketId = c.Int(nullable: false),
                         Personne_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.CommentaireID)
-                .ForeignKey("dbo.Personnes", t => t.AssistantID, cascadeDelete: true)
+                .ForeignKey("dbo.Personnes", t => t.AssistantID)
                 .ForeignKey("dbo.Tickets", t => t.TicketId, cascadeDelete: true)
                 .ForeignKey("dbo.Personnes", t => t.Personne_ID)
                 .Index(t => t.AssistantID)
@@ -60,33 +60,30 @@ namespace Metier.Migrations
                 c => new
                     {
                         TicketID = c.Int(nullable: false, identity: true),
+                        Type = c.Int(nullable: false),
                         Resume = c.String(),
                         DateEcheance = c.DateTime(nullable: false),
                         DateCreation = c.DateTime(nullable: false),
                         Description = c.String(nullable: false, maxLength: 1000),
+                        ApplicationID = c.Int(nullable: false),
                         AssistantID = c.Int(),
-                        CategorieID = c.Int(nullable: false),
+                        Priorite = c.Int(nullable: false),
+                        Resolution = c.Int(nullable: false),
+                        Statut = c.Int(nullable: false),
+                        Environnement = c.Int(nullable: false),
+                        Criticite = c.Int(nullable: false),
                         PieceJointeID = c.Int(),
                         Personne_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.TicketID)
+                .ForeignKey("dbo.Applications", t => t.ApplicationID, cascadeDelete: true)
                 .ForeignKey("dbo.Personnes", t => t.AssistantID)
-                .ForeignKey("dbo.Categories", t => t.CategorieID, cascadeDelete: true)
                 .ForeignKey("dbo.PieceJointes", t => t.PieceJointeID)
                 .ForeignKey("dbo.Personnes", t => t.Personne_ID)
+                .Index(t => t.ApplicationID)
                 .Index(t => t.AssistantID)
-                .Index(t => t.CategorieID)
                 .Index(t => t.PieceJointeID)
                 .Index(t => t.Personne_ID);
-            
-            CreateTable(
-                "dbo.Categories",
-                c => new
-                    {
-                        CategorieID = c.Int(nullable: false, identity: true),
-                        Libelle = c.String(),
-                    })
-                .PrimaryKey(t => t.CategorieID);
             
             CreateTable(
                 "dbo.Historiques",
@@ -97,11 +94,10 @@ namespace Metier.Migrations
                         Libelle = c.String(),
                         AssistantID = c.Int(),
                         Priorite = c.Int(nullable: false),
-                        PrioriteID = c.Int(nullable: false),
                         Resolution = c.Int(nullable: false),
-                        ResolutionID = c.Int(nullable: false),
                         Statut = c.Int(nullable: false),
-                        StatutID = c.Int(nullable: false),
+                        Environnement = c.Int(nullable: false),
+                        Criticite = c.Int(nullable: false),
                         TicketID = c.Int(nullable: false),
                         PieceJointeID = c.Int(),
                     })
@@ -155,16 +151,16 @@ namespace Metier.Migrations
             DropForeignKey("dbo.Historiques", "PieceJointeID", "dbo.PieceJointes");
             DropForeignKey("dbo.Historiques", "AssistantID", "dbo.Personnes");
             DropForeignKey("dbo.Commentaires", "TicketId", "dbo.Tickets");
-            DropForeignKey("dbo.Tickets", "CategorieID", "dbo.Categories");
             DropForeignKey("dbo.Tickets", "AssistantID", "dbo.Personnes");
+            DropForeignKey("dbo.Tickets", "ApplicationID", "dbo.Applications");
             DropForeignKey("dbo.Commentaires", "AssistantID", "dbo.Personnes");
             DropIndex("dbo.Historiques", new[] { "PieceJointeID" });
             DropIndex("dbo.Historiques", new[] { "TicketID" });
             DropIndex("dbo.Historiques", new[] { "AssistantID" });
             DropIndex("dbo.Tickets", new[] { "Personne_ID" });
             DropIndex("dbo.Tickets", new[] { "PieceJointeID" });
-            DropIndex("dbo.Tickets", new[] { "CategorieID" });
             DropIndex("dbo.Tickets", new[] { "AssistantID" });
+            DropIndex("dbo.Tickets", new[] { "ApplicationID" });
             DropIndex("dbo.Commentaires", new[] { "Personne_ID" });
             DropIndex("dbo.Commentaires", new[] { "TicketId" });
             DropIndex("dbo.Commentaires", new[] { "AssistantID" });
@@ -174,7 +170,6 @@ namespace Metier.Migrations
             DropTable("dbo.Roles");
             DropTable("dbo.PieceJointes");
             DropTable("dbo.Historiques");
-            DropTable("dbo.Categories");
             DropTable("dbo.Tickets");
             DropTable("dbo.Commentaires");
             DropTable("dbo.Personnes");

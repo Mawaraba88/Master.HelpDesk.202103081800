@@ -126,37 +126,9 @@
     <Compile Include="Interfaces\IHelpDeskData.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IDomaine.cs" />
-    <Compile Include="Migrations\202104181239334_1.cs" />
-    <Compile Include="Migrations\202104181239334_1.Designer.cs">
-      <DependentUpon>202104181239334_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104181332006_2.cs" />
-    <Compile Include="Migrations\202104181332006_2.Designer.cs">
-      <DependentUpon>202104181332006_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104181501365_3.cs" />
-    <Compile Include="Migrations\202104181501365_3.Designer.cs">
-      <DependentUpon>202104181501365_3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104190804051_4.cs" />
-    <Compile Include="Migrations\202104190804051_4.Designer.cs">
-      <DependentUpon>202104190804051_4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104200258182_5.cs" />
-    <Compile Include="Migrations\202104200258182_5.Designer.cs">
-      <DependentUpon>202104200258182_5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104211947460_6.cs" />
-    <Compile Include="Migrations\202104211947460_6.Designer.cs">
-      <DependentUpon>202104211947460_6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104231058005_8.cs" />
-    <Compile Include="Migrations\202104231058005_8.Designer.cs">
-      <DependentUpon>202104231058005_8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104231216352_9.cs" />
-    <Compile Include="Migrations\202104231216352_9.Designer.cs">
-      <DependentUpon>202104231216352_9.cs</DependentUpon>
+    <Compile Include="Migrations\202105041716289_1.cs" />
+    <Compile Include="Migrations\202105041716289_1.Designer.cs">
+      <DependentUpon>202105041716289_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeleHelpDesk.cs" />
@@ -176,36 +148,15 @@
     <Folder Include="Interface\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104181239334_1.resx">
-      <DependentUpon>202104181239334_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104181332006_2.resx">
-      <DependentUpon>202104181332006_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104181501365_3.resx">
-      <DependentUpon>202104181501365_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104190804051_4.resx">
-      <DependentUpon>202104190804051_4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104200258182_5.resx">
-      <DependentUpon>202104200258182_5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104211947460_6.resx">
-      <DependentUpon>202104211947460_6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104231058005_8.resx">
-      <DependentUpon>202104231058005_8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104231216352_9.resx">
-      <DependentUpon>202104231216352_9.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Outils\Outils.csproj">
       <Project>{909A2A57-36B3-4E35-BD7D-C1B1F0C64FBB}</Project>
       <Name>Outils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202105041716289_1.resx">
+      <DependentUpon>202105041716289_1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
