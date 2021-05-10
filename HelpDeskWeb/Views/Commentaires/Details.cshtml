@@ -1,0 +1,42 @@
+﻿@model Metier.Domaine.Commentaire
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Commentaire</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Assistant.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assistant.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Resume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Resume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contenu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contenu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CommentaireID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

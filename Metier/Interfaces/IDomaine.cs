@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Metier.Interfaces
 {
-  public  interface IDomaine
+  public  interface IDomaine<T>
     {
+        
     }
 }

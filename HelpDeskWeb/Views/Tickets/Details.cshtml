@@ -1,0 +1,195 @@
+﻿
+@using HelpDeskWeb.ViewModels.Commentaires
+
+@model Metier.Domaine.Ticket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Applications.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Applications.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Assistant.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assistant.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PieceJointe.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PieceJointe.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEcheance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEcheance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priorite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priorite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resolution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resolution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Environnement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Environnement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Criticite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Criticite)
+        </dd>
+
+        <dd>
+            @foreach (var item in Model.Commentaires)
+            {
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Commentaires)
+            </dt>
+            <dd>
+                @Html.DisplayFor(modelItem => item.Contenu)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Assistant)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Assistant.FullName)
+            </dd>
+
+        }
+            </dd>
+
+        </dl>
+
+
+    </div>
+    <div class="col-md-4">
+        @if (Model.PieceJointeID != null)
+        {
+            <img src="@Url.Action("PieceJointe", "Tickets", new { id = Model.PieceJointeID.Value })" class="img-responsive" />}
+    </div>
+
+    </div>
+
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div>
+            @Html.ActionLink("Ajouter un commentaire", "Create", "Commentaires")
+        </div>
+        @Html.Partial("_PartialCommentaire", new PostCommentViewModel(Model.TicketID))
+    }
+
+    @using (Html.BeginForm("PostComment", "Tickets", FormMethod.Post))
+    {
+        <input class="pull-left" type="text" name="commentText" placeholder="Ajouter votre commentaire"
+               style="width:700px; height:60px; font-size:20px; margin-bottom:10px;" />
+        <input type="submit" value="Ajouter" class="btn btn-success pull-left"
+               style="margin-bottom:10px;" />
+    }
+
+
+
+
+
+ 
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+  
+}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TicketID }) |
+
+    @Html.ActionLink("Back to List", "Index")|
+
+
+</p>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jqueryval")
+}

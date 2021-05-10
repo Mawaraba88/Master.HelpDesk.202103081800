@@ -1,6 +1,10 @@
 ﻿#region Références importées
+
+//using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,65 +14,88 @@ namespace Metier.Domaine
 {
     public class Ticket
     {
-        #region Propriétés
-        private int idTicket;
 
-        public int IDTicket
-        {
-            get { return this.idTicket; }
-            set { this.idTicket = value; }
-        }
+        private ICollection<Commentaire> commentaires;
+        private ICollection<Historique> historiques;
+
+        [DefaultValue(Type.Bogue)]
+        public Type Type { get; set; }
+      
+        public string Resume { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date d'échéance")]
+        public DateTime DateEcheance { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date de création")]
+        public DateTime DateCreation { get; set; }
+        
+        [Required]
+        [StringLength(1000, MinimumLength = 20)]
+        [UIHint("MultiLineText")]
+        public string Description { get; set; }
+        
+        
+        public int TicketID { get; set; }
+        
         // prop (snippet)
        
 
-        public decimal Temps { get; set; }
+        /*public decimal Temps { get; set; }
         public decimal TempsJour
         {
             get { return this.Temps / 6; }
-        }
-        #endregion
-
-        public Utilisateur Utilisateur { get; set; }
-        public int UtilisateurID { get; set; }
+        }*/
+       
+        /*public int UtilisateurID { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }*/
+       
 
         public Application Applications { get; set; }
         public int ApplicationID { get; set; }
 
-
-        public Assistant Assistant { get; set; }
-        // public int? AssistantID { get; set; }
         public Nullable<int> AssistantID { get; set; }
-      
-        public int PieceJointeID { get; set; }
-        public int HistoriqueID { get; set; }
+        public virtual Assistant Assistant { get; set; }
 
 
-        public Type Type { get; set; }
-        public int TypeID { get; set; }
+        [DefaultValue(Priorite.Bas)]
+        public  Priorite Priorite { get; set; }
 
-        public ICollection<Commentaire> Commentaires { get; set; }
+        [DefaultValue(Resolution.Ouvert)]
+        public  Resolution Resolution { get; set; }
+        [DefaultValue(Statut.Nouveau)]
+        public  Statut Statut { get; set; }
+        [DefaultValue(Environnement.Developpement)]
+        public  Environnement Environnement { get; set; }
+        [DefaultValue(Criticite.Bloquante)]
+        public  Criticite Criticite { get; set; }
+       
 
-
-        public Categorie Categorie { get; set; }
-        public int CategorieID { get; set; }
-
-        public Niveau Niveau { get; set; }
-        public int NiveauID { get; set; }
-        public Priorite Priorite { get; set; }
-        public int PrioriteID { get; set; }
-
-        public Statut Statut { get; set; }
-        public int StatutID { get; set; }
-
-        public Motif Motif { get; set; }
-        public int MotifID { get; set; }
-
-        public List<PieceJointe> PieceJointes { get; set; }
-        public List<Historique> Historiques { get; set; }
-
+        public virtual PieceJointe PieceJointe { get; set; }
+        public int? PieceJointeID { get; set; }
+        public virtual ICollection<Historique> Historiques
+        {
+            get { return this.historiques; }
+            set { this.historiques = value; }
+        }
+        public virtual ICollection<Commentaire> Commentaires
+        { 
+            get { return this.commentaires; }
+            set { this.commentaires = value; }
+        }
+       
         public Ticket()
         {
-            this.Commentaires = new List<Commentaire>();
+            this.commentaires = new HashSet<Commentaire>();
+
+            this.historiques = new HashSet<Historique>();
+
+            //DateCreation = DateTime.Now;
+            //DateEcheance = DateTime.Now;
+
 
             //  ctrl+v = coller circulaire        public List<PieceJointe> PieceJointes { get; set; }
             // selection rectangulaire =  alt + souris
@@ -84,5 +111,6 @@ namespace Metier.Domaine
             ti[0] = 1;
         }
 
+     
     }
 }

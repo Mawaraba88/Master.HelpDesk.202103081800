@@ -8,21 +8,23 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Metier;
+using System.Web.Security;
+using HelpDeskWeb.Filters;
 
 namespace HelpDeskWeb.Controllers
 {
     public class ApplicationsController : Controller
     {
-        private Metier.ModeleHelpDesk db = new Metier.ModeleHelpDesk();
+        private ModeleHelpDesk db = new ModeleHelpDesk();
 
         // GET: Applications
         public async Task<ActionResult> Index()
         {
-            var resultats = await db.Applications.ToListAsync();
-            return View(resultats);
+            return View(await db.Applications.ToListAsync());
         }
 
         // GET: Applications/Details/5
+        [CustomerAuthorisation]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Applications/Create
+      
         public ActionResult Create()
         {
             return View();
@@ -48,7 +51,8 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ApplicationID,Libelle")] Application application)
+        [CustomerAuthorisation]
+        public async Task<ActionResult> Create([Bind(Include = "ApplicationID,Libelle,Version")] Application application)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +65,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Applications/Edit/5
+        [CustomerAuthorisation]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,7 +85,8 @@ namespace HelpDeskWeb.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ApplicationID,Libelle")] Application application)
+        [CustomerAuthorisation]
+        public async Task<ActionResult> Edit([Bind(Include = "ApplicationID,Libelle,Version")] Application application)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +98,7 @@ namespace HelpDeskWeb.Controllers
         }
 
         // GET: Applications/Delete/5
+        [CustomerAuthorisation]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -109,6 +116,7 @@ namespace HelpDeskWeb.Controllers
         // POST: Applications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomerAuthorisation]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Application application = await db.Applications.FindAsync(id);

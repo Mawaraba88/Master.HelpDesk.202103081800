@@ -7,20 +7,16 @@ using System.Threading.Tasks;
 
 namespace Metier.Domaine
 {
-    public class Assistant:Personne,IDomaine
+    public class Assistant : Personne
     {
         /// <summary>
         /// Identifiant de l'assistant
         /// </summary>
-        public int AssistantID
-        {
-            get => default;
-            set
-            {
-
-            }
-        }
+        //public int AssistantID { get; set; }
+        public string Service { get; set; }
         public Role Role { get; set; }
         public int RoleID { get; set; }
+
+       
     }
 }

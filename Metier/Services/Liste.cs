@@ -35,8 +35,7 @@ namespace Metier.Services
         private Liste<Profil> profils = new Liste<Profil>();
         public Liste<Profil> Profils { get { return profils; } }
 
-        public Liste<Motif> Motifs { get; }
-
+ 
         public Profil this[string index]
         {
             get
@@ -48,17 +47,16 @@ namespace Metier.Services
         {
             #region Profils
             Profil profilCollaborateur = new Profil();
-            profilCollaborateur.IDProfil = 3;
+            profilCollaborateur.ProfilID = 3;
             profilCollaborateur.Libelle = "Collaborateur";
 
 
-            profils.Ajouter(new Profil { IDProfil = 1, Libelle = "Administrateur" });
-            profils.Ajouter(new Profil { IDProfil = 2, Libelle = "Client" });
+            profils.Ajouter(new Profil { ProfilID = 1, Libelle = "Administrateur" });
+            profils.Ajouter(new Profil { ProfilID = 2, Libelle = "Client" });
             profils.Ajouter(profilCollaborateur);
             #endregion
 
-            Motifs = new Liste<Motif>();
-            Motifs.Ajouter(new Motif { MotifID = 1, Libelle = "Anomalie" });
+            
 
         }
     }

@@ -1,35 +1,119 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- RAZOR -->
     <title>@ViewBag.Title - Mon application ASP.NET</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/kendo")
+    @RenderSection("styles", required: false)
 </head>
 <body>
+
+    <!--<div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  @Html.ActionLink("Master HelpDesk", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+              </div>
+              <div class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav" id="menu">
+                      <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                      <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+                      <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                      <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Configuration
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                  <li> @Html.ActionLink("Categories", "Index", "Categories", new { area = "Configuration" }, null)</li>
+                                  <li> @Html.ActionLink("Applications", "Index", "Applications", new { area = "Configuration" }, null)</li>
+                                  <li> @Html.ActionLink("Profils", "Index", "Profils", new { area = "Configuration" }, null)</li>
+                                  <li> @Html.ActionLink("Utilisateurs", "Index", "Utilisateurs", new { area = "Configurations" }, null)</li>
+                                  <li> @Html.ActionLink("Roles", "Index", "Roles", new { area = "Configuration" }, null)</li>
+                                  <li> @Html.ActionLink("Assistants", "Index", "Assistants", new { area = "Configuration" }, null)</li>
+
+                          </div>
+
+                      </li>
+
+
+                      <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+    
+-->
+
     <div class="navbar navbar-inverse navbar-fixed-top">
+
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+
                 @Html.ActionLink("Master HelpDesk", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Applications", "Index", "Applications")</li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item active">
+                        @Html.ActionLink("Home", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item active">
+                            @Html.ActionLink("Liste des Tickets", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })
+
+                        </li>
+
+                        if (User.IsInRole("Admin ") || true)
+                        {
+                            
+                            <li class="nav-item active dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Configurations
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    @Html.ActionLink("Applications", "Index", "Applications", new { area = "Configuration" }, null)
+
+                                    <hr class="dropdown-divider">
+                                    @Html.ActionLink("Roles", "Index", "Roles", new { area = "Configuration" }, null)
+                                    <hr class="dropdown-divider">
+                                    @Html.ActionLink("Assistants", "Index", "Assistants", new { area = "Configuration" }, null)
+
+                                </div>
+                            </li>
+                        }
+                    }
+
+
+
+
+
+                    @Html.Partial("_LoginPartial")
                 </ul>
+
             </div>
         </div>
     </div>
+        
+   
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -38,8 +122,13 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/kendo")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            $('#menu').kendoMenu();
+        })</script>
 </body>
 </html>

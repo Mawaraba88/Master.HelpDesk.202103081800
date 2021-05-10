@@ -1,30 +1,71 @@
-﻿using System;
+﻿using AutoMapper.QueryableExtensions;
+using HelpDeskWeb.Service;
+using HelpDeskWeb.ViewModels.Commentaires;
+using HelpDeskWeb.ViewModels.Home;
+using HelpDeskWeb.ViewModels.Ticket;
+using Metier;
+using Metier.Domaine;
+using Metier.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace HelpDeskWeb.Controllers
 {
+
+
     public class HomeController : Controller
     {
+        private ModeleHelpDesk db = new ModeleHelpDesk();
+
+        public HomeController()
+        {
+
+        }
+
         public ActionResult Index()
         {
-            return View();
+            //Session["UserId"] = 0;
+
+            IQueryable<TicketViewModel> data = from ticket in db.Tickets
+
+                                               group ticket by ticket.DateEcheance into dateGroup
+
+
+                                               select new TicketViewModel()
+                                               {
+                                                   DateEcheance = dateGroup.Key,
+
+                                                   TicketCount = dateGroup.Count()
+
+                                               };
+
+            return View(data.ToList());
+
+          
         }
 
-        public ActionResult About()
+        protected override void Dispose(bool disposing)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            db.Dispose();
+            base.Dispose(disposing);
         }
 
-        public ActionResult Contact()
+
+        public ActionResult Error()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+        [ChildActionOnly]
+        [OutputCache(Duration = 60 * 60)]
+        public ActionResult CommentairesTickets()
+        {
+            return PartialView("_CommentairesTicketPartialView");
+        }
+
     }
 }
