@@ -264,6 +264,43 @@ namespace HelpDeskWeb.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        /*
+        // Post : Tickets/PostComment
+
+        public ActionResult PostComment(string contenu)
+        {
+            //int AssistanId = Convert.ToInt32(Session["UserId"]);
+            Commentaire c = new Commentaire();
+            c.Contenu = contenu;
+            //c.AssistantID = AssistanId;
+            db.Commentaires.Add(c);
+            db.SaveChanges();
+            return RedirectToAction("Details");
+
+        }*/
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> PostComment([Bind(Include = "CommentaireID,Contenu,AssistantID,TicketId")] Commentaire commentaire)
+        {
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "FullName", commentaire.AssistantID);
+            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
+            if (ModelState.IsValid)
+            {
+                db.Commentaires.Add(commentaire);
+                await db.SaveChangesAsync();
+                return View(commentaire);
+                //return RedirectToAction("Details");
+            }
+
+
+
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "FullName", commentaire.AssistantID);
+            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
+            return View(commentaire);
+
+
+            //return PartialView("_PartialCommentaire");
+        }
 
         protected override void Dispose(bool disposing)
         {

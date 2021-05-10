@@ -29,6 +29,7 @@ namespace HelpDeskWeb.Controllers
 
         public ActionResult Index()
         {
+            //Session["UserId"] = 0;
 
             IQueryable<TicketViewModel> data = from ticket in db.Tickets
 
@@ -44,6 +45,8 @@ namespace HelpDeskWeb.Controllers
                                                };
 
             return View(data.ToList());
+
+          
         }
 
         protected override void Dispose(bool disposing)

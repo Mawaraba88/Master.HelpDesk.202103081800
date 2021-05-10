@@ -33,6 +33,7 @@ namespace HelpDeskWeb.Controllers
         public ActionResult Login(LoginViewModel modelLogin)
         {
             Personne user = db.Assistants.Single(model => model.Email == modelLogin.Email);
+           // Session["UserId"] = user;
             
             if (!db.Personnes.Any(model =>model.Email == modelLogin.Email))
             {

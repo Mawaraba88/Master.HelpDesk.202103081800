@@ -56,16 +56,21 @@ namespace HelpDeskWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "CommentaireID,Contenu,AssistantID,TicketId")] Commentaire commentaire)
         {
+            ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "FullName", commentaire.AssistantID);
+            ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
             if (ModelState.IsValid)
             {
                 db.Commentaires.Add(commentaire);
                 await db.SaveChangesAsync();
                 return View(commentaire);
+                //return RedirectToAction("Details", "Tickets");
             }
 
             ViewBag.AssistantID = new SelectList(db.Personnes, "ID", "FullName", commentaire.AssistantID);
             ViewBag.TicketId = new SelectList(db.Tickets, "TicketID", "Resume", commentaire.TicketId);
              return View(commentaire);
+            //return View("Details", "Tickets");
+
 
             //return PartialView("_PartialCommentaire");
         }

@@ -1,5 +1,6 @@
 ﻿
 @using HelpDeskWeb.ViewModels.Commentaires
+
 @model Metier.Domaine.Ticket
 
 @{
@@ -140,22 +141,47 @@
         </dl>
 
 
-</div>
-<div class="col-md-4">
-    @if (Model.PieceJointeID != null)
-    {
-        <img src="@Url.Action("PieceJointe", "Tickets", new { id = Model.PieceJointeID.Value })" class="img-responsive" />}
-</div>
+    </div>
+    <div class="col-md-4">
+        @if (Model.PieceJointeID != null)
+        {
+            <img src="@Url.Action("PieceJointe", "Tickets", new { id = Model.PieceJointeID.Value })" class="img-responsive" />}
+    </div>
 
-</div>
-@if (User.Identity.IsAuthenticated)
-{   
-<div>
-    @Html.ActionLink("Ajouter un commentaire", "Create", "Commentaires")
-</div>
+    </div>
+
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div>
+            @Html.ActionLink("Ajouter un commentaire", "Create", "Commentaires")
+        </div>
+        @Html.Partial("_PartialCommentaire", new PostCommentViewModel(Model.TicketID))
+    }
+
+    @using (Html.BeginForm("PostComment", "Tickets", FormMethod.Post))
+    {
+        <input class="pull-left" type="text" name="commentText" placeholder="Ajouter votre commentaire"
+               style="width:700px; height:60px; font-size:20px; margin-bottom:10px;" />
+        <input type="submit" value="Ajouter" class="btn btn-success pull-left"
+               style="margin-bottom:10px;" />
+    }
+
+
+
+
+
+ 
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
   
 }
-@Html.Partial("_PartialCommentaire", new PostCommentViewModel(Model.TicketID))
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.TicketID }) |
 
@@ -163,3 +189,7 @@
 
 
 </p>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jqueryval")
+}
